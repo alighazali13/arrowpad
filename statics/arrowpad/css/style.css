@@ -1413,7 +1413,7 @@ Main Banner Area CSS
 }
 
 .banner-bg1 {
-  background-image: url(../img/main-banner-bg2.jpg);
+  background-image: url(../img/blackmythposter.jpg);
 }
 
 .banner-bg2 {
@@ -1735,15 +1735,21 @@ Matches Area CSS
 
 .single-matches-box .matches-team .content .watch-list {
   list-style-type: none;
-  padding-left: 0;
-  padding-right: 54px;
+  padding-left: 5rem !important;
+  /* padding-right: 54px; */
   margin-bottom: 0;
-  margin-top: 15px;
+  /* margin-top: 15px; */
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .single-matches-box .matches-team .content .watch-list li {
   display: inline-block;
   margin-right: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .single-matches-box .matches-team .content .watch-list li span {
@@ -1780,13 +1786,15 @@ Matches Area CSS
 
 .single-matches-box .matches-team.right-image .content {
   text-align: left;
+  
+  background-image: url(../img/matches-bg-c.png);
+  background-position: left center;
+  background-size: cover;
 }
 
 .single-matches-box .matches-team.right-image .content h3 {
   padding-left: 55px;
   padding-right: 0;
-  background-image: url(../img/matches-bg2.png);
-  background-position: left center;
 }
 
 .single-matches-box .matches-team.right-image .content ul {
