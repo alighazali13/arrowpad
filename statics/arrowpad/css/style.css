@@ -405,11 +405,17 @@ Navbar Area CSS
 .zelda-nav .navbar .navbar-brand {
   font-size: inherit;
   line-height: 1;
-  max-width: 180px;
+  min-width: 220px;
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.zelda-nav .navbar img {
+  max-height: 50px;
 }
 
 .zelda-nav .navbar ul {
@@ -770,14 +776,18 @@ Navbar Area CSS
 
 .navbar-area {
   position: absolute;
-  background-color: transparent;
   top: 0;
   left: 0;
   width: 100%;
   height: auto;
   z-index: 999;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  -webkit-box-shadow: 0 10px 27px 0 rgba(14, 8, 18, 0.5);
+          box-shadow: 0 10px 27px 0 rgba(14, 8, 18, 0.5);
+  background-color: var(--blackColor) !important;
+  -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+          animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .navbar-area.is-sticky {
