@@ -1,0 +1,16 @@
+{
+    "platform": "django",
+    "app": "develope-arrowpad",
+    "disks":[
+        {
+            "name": "data",
+
+            "mountTo": "data"
+        },
+        {
+            "name" : "media",
+            
+            "mountTo" : "media"
+        }
+    ]
+}
