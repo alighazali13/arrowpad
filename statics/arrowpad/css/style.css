@@ -9293,4 +9293,10 @@ Sidebar Modal CSS
 .sidebarModal.modal .modal-body .social-list li:last-child {
   margin-right: 0;
 }
+
+.category img{
+  border-radius: 100%;
+}
+
+
 /*# sourceMappingURL=style.css.map */
