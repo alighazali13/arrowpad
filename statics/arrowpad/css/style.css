@@ -3398,6 +3398,7 @@ Live Stream Area CSS
   position: relative;
 }
 
+
 .single-live-stream-box .link-btn {
   display: block;
   position: absolute;
@@ -8799,7 +8800,7 @@ Footer Area CSS
 }
 
 .footer-area-bg-image {
-  background-image: url(../img/footer-bg.png);
+  background-image: url();
   background-position: bottom left;
   background-size: cover;
   background-repeat: no-repeat;
