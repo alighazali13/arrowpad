@@ -7454,17 +7454,12 @@ Widget Sidebar CSS
   background-position: center center !important;
 }
 
-.widget-area .widget_zelda_posts_thumb .item .thumb .fullimage.bg1 {
-  background-image: url(../img/main-blog-img1.jpg);
+.widget-area .widget_zelda_posts_thumb .item .thumb .fullimage.bg1 img {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
 }
 
-.widget-area .widget_zelda_posts_thumb .item .thumb .fullimage.bg2 {
-  background-image: url(../img/main-blog-img2.jpg);
-}
-
-.widget-area .widget_zelda_posts_thumb .item .thumb .fullimage.bg3 {
-  background-image: url(../img/main-blog-img3.jpg);
-}
 
 .widget-area .widget_zelda_posts_thumb .item .thumb::before, .widget-area .widget_zelda_posts_thumb .item .thumb::after {
   -webkit-transition: all 0.8s cubic-bezier(0.2, 1, 0.22, 1);

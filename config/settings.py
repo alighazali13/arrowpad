@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'arrowpad.apps.ArrowpadConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
