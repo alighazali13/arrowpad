@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+class categories_admin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'url', 'active']
+admin.site.register(categories, categories_admin)
+
+class categoryMeta_admin(admin.ModelAdmin):
+    list_display = ['id', 'category', 'metaTitle']
+admin.site.register(categoryMeta, categoryMeta_admin)
