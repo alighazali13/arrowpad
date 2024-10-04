@@ -16,3 +16,7 @@ admin.site.register(blogSlides, blogSlides_admin)
 class blogVideos_admin(admin.ModelAdmin):
     list_display = ['id', 'blog']
 admin.site.register(blogVideos, blogVideos_admin)
+
+class blogView_admin(admin.ModelAdmin):
+    list_display = ['id', 'blog', 'date', 'view']
+admin.site.register(blogView, blogView_admin)

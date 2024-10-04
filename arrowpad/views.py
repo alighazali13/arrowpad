@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from .models import categories
+from blog.models import blog
 
 def landing_page(request):
     
@@ -10,11 +11,16 @@ def landing_page(request):
         categoriesObject = categories.objects.filter(active=True)
         categoriesStatus = 200
 
+    blogs_by_category = {}
+    for category in categoriesObject:
+        blogs_by_category[category.en_name] = blog.objects.filter(categories=category)
+
     
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
-        'categories' : categoriesObject
+        'categories' : categoriesObject,
+        'blogs_by_category' : blogs_by_category
     }
 
     return render(request, 'arrowpad/index.html', contexts)

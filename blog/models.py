@@ -8,41 +8,32 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from arrowpad.models import categories
 
 def blogPoster_path(instance, fileName):
-    status = True
-    while status:
-        if ' ' in instance.title:
-            folderName = instance.title.replace(' ','_')
-        if '.' in instance.title:
-            folderName = instance.title.replace('.','_')
-        if '.' not in instance.title and ' ' not in instance.title:
-            status = False
-    fileName = 'bp_' + uuid.uuid4 + uuid.uuid4 + '.webp'
+    folderName = instance.title
+    if ' ' in instance.title:
+        folderName = instance.title.replace(' ','_')
+    if '.' in instance.title:
+        folderName = instance.title.replace('.','_')
+    fileName = 'bp_' + uuid.uuid4().hex + uuid.uuid4().hex + '.webp'
 
     return 'Images/Blogs/{0}/{1}'.format(folderName, fileName)
 
 def blogSlides_path(instance, fileName):
-    status = True
-    while status:
-        if ' ' in instance.blog.title:
-            folderName = instance.title.replace(' ','_')
-        if '.' in instance.blog.title:
-            folderName = instance.title.replace('.','_')
-        if '.' not in instance.blog.title and ' ' not in instance.blog.title:
-            status = False
-    fileName = 'bs_' + uuid.uuid4 + uuid.uuid4 + '.webp'
+    folderName = instance.blog.title
+    if ' ' in instance.blog.title:
+        folderName = instance.blog.title.replace(' ','_')
+    if '.' in instance.blog.title:
+        folderName = instance.blog.title.replace('.','_')
+    fileName = 'bs_' + uuid.uuid4().hex + uuid.uuid4().hex + '.webp'
 
     return 'Images/Blogs/{0}/{1}'.format(folderName, fileName)
 
 def blogVideo_path(instance, fileName):
-    status = True
-    while status:
-        if ' ' in instance.blog.title:
-            folderName = instance.title.replace(' ','_')
-        if '.' in instance.blog.title:
-            folderName = instance.title.replace('.','_')
-        if '.' not in instance.blog.title and ' ' not in instance.blog.title:
-            status = False
-    fileName = 'bv_' + uuid.uuid4 + uuid.uuid4 + '.webp'
+    folderName = instance.blog.title
+    if ' ' in instance.blog.title:
+        folderName = instance.blog.title.replace(' ','_')
+    if '.' in instance.blog.title:
+        folderName = instance.blog.title.replace('.','_')
+    fileName = 'bv_' + uuid.uuid4().hex + uuid.uuid4().hex + '.webp'
 
     return 'Videos/Blogs/{0}/{1}'.format(folderName, fileName)
 
@@ -54,7 +45,7 @@ class blog(models.Model):
     categories = models.ForeignKey(categories, on_delete=models.CASCADE, related_name='blog')
     brief = models.TextField()
     content = RichTextField()
-    url = models.URLField(max_length=255, unique=True)
+    url = models.CharField(max_length=255, unique=True)
     publishedAt = jmodels.jDateField(default=jdatetime.date.today)
     updatedAt = jmodels.jDateField(default=jdatetime.date.today)
     hasVideo = models.BooleanField(default=False)
@@ -80,4 +71,17 @@ class blogSlides(models.Model):
 class blogVideos(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogVideos')
     image = models.FileField(upload_to=blogVideo_path)
+
+
+
+class blogViewTypesChoices(models.IntegerChoices):
+    null = 0,
+    total = 1,
+    today = 2
+
+class blogView(models.Model):
+    blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogView')
+    types = models.IntegerField(default = blogViewTypesChoices.null, choices=blogViewTypesChoices.choices)
+    date = jmodels.jDateField(default=jdatetime.date.today)
+    view = models.IntegerField()
 

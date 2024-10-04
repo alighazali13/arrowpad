@@ -1,13 +1,12 @@
 {% extends 'arrowpad/masterpage.html' %}
 {% load static %}
-{% load split %}
 
 {% block content %}
     <!-- Start Page Title Area -->
     <section class="page-title-area page-title-bg1">
         <div class="container">
             <div class="page-title-content">
-                <h1 style="font-size: 40px;" title=" {{blog.title}} "> {{blog.title}} </h1>
+                <h1 title="وبلاگ جداگانه">وبلاگ جداگانه</h1>
             </div>
         </div>
     </section>
@@ -20,7 +19,7 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="blog-details-desc">
                         <div class="article-image">
-                            <img src="/media/{{blog.poster}}" alt="image">
+                            <img src="{% static 'arrowpad/img/main-blog-img1.jpg' %}" alt="image">
                         </div>
 
                         <div class="article-content">
@@ -29,38 +28,77 @@
                                     <li>
                                         <i class='bx bx-folder-open'></i>
                                         <span>دسته</span>
-                                        <a href="#"> {{blog.categories.title}} </a>
+                                        <a href="#">مد</a>
                                     </li>
                                     <li>
                                         <i class='bx bx-group'></i>
                                         <span>بازدید</span>
-                                         {{blogView}} 
+                                        <a href="#">813,454</a>
                                     </li>
                                     <li>
                                         <i class='bx bx-calendar'></i>
-                                        <span>انتشار در</span>
-                                        {{blog.publishedAt}}
-                                    </li>
-                                    <li>
-                                        <i class='bx bx-pencil'></i>
-                                        <span>نویسنده</span>
-                                        {{blog.author}}
+                                        <span>ارسال در</span>
+                                        <a href="#">98/02/25</a>
                                     </li>
                                 </ul>
                             </div>
 
-                            {{blog.content | safe}}
-                            
+                            <h3>زلدا برای دهمین سالگرد خود به بزرگترین رویداد می آید</h3>
+
+                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
+
+                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
+
+                            <blockquote class="wp-block-quote">
+                                <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
+
+                                <cite>تام کروز</cite>
+                            </blockquote>
+
+                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
+
+                            <ul class="wp-block-gallery columns-3">
+                                <li class="blocks-gallery-item">
+                                    <figure>
+                                        <img src="{% static 'arrowpad/img/main-blog-img2.jpg' %}" alt="image">
+                                    </figure>
+                                </li>
+
+                                <li class="blocks-gallery-item">
+                                    <figure>
+                                        <img src="{% static 'arrowpad/img/main-blog-img3.jpg' %}" alt="image">
+                                    </figure>
+                                </li>
+
+                                <li class="blocks-gallery-item">
+                                    <figure>
+                                        <img src="{% static 'arrowpad/img/main-blog-img4.jpg' %}" alt="image">
+                                    </figure>
+                                </li>
+                            </ul>
+
+                            <h3>چهار عنصر اصلی که ما ارائه می دهیم:</h3>
+
+                            <ul class="features-list">
+                                <li><i class='bx bx-badge-check'></i> مهارت های علمی برای گرفتن نتیجه بهتر</li>
+                                <li><i class='bx bx-badge-check'></i> مهارت های ارتباطی برای برقراری</li>
+                                <li><i class='bx bx-badge-check'></i> یک فرصت مروری شغلی در دسترس است</li>
+                                <li><i class='bx bx-badge-check'></i> یک محیط مناسب برای کار</li>
+                            </ul>
+
+                            <h3>مهارت های علمی برتر</h3>
+                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
+
+                            <h3>مهارت های کاربردی برتر</h3>
+                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
                         </div>
 
                         <div class="article-footer">
                             <div class="article-tags">
                                 <span><i class='bx bx-purchase-tag'></i></span>
-                                {% with blogMeta.metaTags|split:"-" as tags %}
-                                    {% for tag in tags %}
-                                        <a href="#">{{tag}}</a>{% if not forloop.last %}, {% endif %}
-                                    {% endfor %}
-                                {% endwith %}
+                                <a href="#">مد</a>,
+                                <a href="#">بازی</a>,
+                                <a href="#">سفر</a>
                             </div>
 
                             <div class="article-share">
@@ -319,29 +357,52 @@
 
                         <section class="widget widget_zelda_posts_thumb">
                             <h3 class="widget-title">پست های محبوب</h3>
-                            {% for blog in blogsObjects %}
-                                <article class="item">
-                                    <a href="#" class="thumb">
-                                        <span class="fullimage cover bg1" role="img"><img src="/media/{{blog.poster}}" alt=""></span>
-                                    </a>
-                                    <div class="info">
-                                        <span>{{blog.publishedAt}}</span>
-                                        <h4 class="title usmall"><a href="#">ابزارهای اندروید برای توسعه بازی های موبایل</a></h4>
-                                    </div>
 
-                                    <div class="clear"></div>
-                                </article>
-                            {% endfor %}
+                            <article class="item">
+                                <a href="#" class="thumb">
+                                    <span class="fullimage cover bg1" role="img"><img src="{% static 'arrowpad/img/main-blog-img1.jpg' %}" alt=""></span>
+                                </a>
+                                <div class="info">
+                                    <span>10 دی 1398</span>
+                                    <h4 class="title usmall"><a href="#">ابزارهای اندروید برای توسعه بازی های موبایل</a></h4>
+                                </div>
 
+                                <div class="clear"></div>
+                            </article>
+
+                            <article class="item">
+                                <a href="#" class="thumb">
+                                    <span class="fullimage cover bg1" role="img"><img src="{% static 'arrowpad/img/main-blog-img2.jpg' %}" alt=""></span>
+                                </a>
+                                <div class="info">
+                                    <span>10 دی 1398</span>
+                                    <h4 class="title usmall"><a href="#">ابزارهای اندروید برای توسعه بازی های موبایل</a></h4>
+                                </div>
+
+                                <div class="clear"></div>
+                            </article>
+
+                            <article class="item">
+                                <a href="#" class="thumb">
+                                    <span class="fullimage cover bg1" role="img"><img src="{% static 'arrowpad/img/main-blog-img3.jpg' %}" alt=""></span>
+                                </a>
+                                <div class="info">
+                                    <span>10 دی 1398</span>
+                                    <h4 class="title usmall"><a href="#">ابزارهای اندروید برای توسعه بازی های موبایل</a></h4>
+                                </div>
+
+                                <div class="clear"></div>
+                            </article>
                         </section>
 
                         <section class="widget widget_categories">
                             <h3 class="widget-title">دسته بندی ها</h3>
 
                             <ul>
-                                {% for category in categories %}
-                                    <li><a href="/{{category.url}}"> {{category.title}} <span class="post-count">(03)</span></a></li>
-                                {% endfor %}
+                                <li><a href="{% url 'kiosk' %}"> کیوسک <span class="post-count">(03)</span></a></li>
+                                <li><a href="#"> سولز شناسی <span class="post-count">(05)</span></a></li>
+                                <li><a href="#"> فکت <span class="post-count">(10)</span></a></li>
+                                <li><a href="#"> میکروسکوپ <span class="post-count">(08)</span></a></li>
                             </ul>
                         </section>
 
@@ -372,15 +433,15 @@
 
 
 {% block meta_title %}
-    {{blogMeta.metaTitle}}
+    اروپد | Arrowpad
 {% endblock meta_title %}
 
-{% block meta_keyword %} {{blogMeta.metaKeywords}} {% endblock meta_keyword %}
+{% block meta_keyword %} arrowpad, اروپد - سفری به دنیای گیم به سبک ما {% endblock meta_keyword %}
 
-{% block meta_tag %} {{blogMeta.metaTags}} {% endblock meta_tag %}
+{% block meta_tag %}{% endblock meta_tag %}
 
-{% block meta_description %} {{blogMeta.metaDescription}} {% endblock meta_description %}
-{% block meta_author %} {{blog.author}} {% endblock meta_author %}
+{% block meta_description %} اروپد | سفری به دنیای گیم به سبک ما {% endblock meta_description %}
+{% block meta_author %} arrowpad {% endblock meta_author %}
 
 {% block links %}
 
