@@ -18,12 +18,15 @@ def kiosk(request):
     print(category['en'])
     blogObjects = getBlogObjects(category)
 
+    newBlogsObjects = getBlogs(3)
+
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
         'category':category,
-        'blogs' : blogObjects
+        'blogs' : blogObjects,
+        'newBlogs' : newBlogsObjects,
 
     }
 

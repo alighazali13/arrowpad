@@ -28,12 +28,15 @@ def getBlogMeta(blogObject):
         blogMetaObject = blogMeta.objects.get(blog = blogObject)
     return blogMetaObject
 
-def getBlogs(num, currentBlog):
-
+def getBlogs(num, currentBlog = None):
+    print(currentBlog)
     
     blogsObjects = blog.objects.none()
     if blog.objects.filter(active=True).exists():
-        blogsObjects = blog.objects.filter(active=True).exclude(id=currentBlog.id).order_by('-id')[:num]
+        if currentBlog is not None:
+            blogsObjects = blog.objects.filter(active=True).exclude(id=currentBlog.id).order_by('-id')[:num]
+        else:
+            blogsObjects = blog.objects.filter(active=True).order_by('-id')[:num]
     return blogsObjects
 
 def getBlogViewTotal(blogObject):
