@@ -48,13 +48,30 @@ class blog(models.Model):
     url = models.CharField(max_length=255, unique=True)
     publishedAt = jmodels.jDateField(default=jdatetime.date.today)
     updatedAt = jmodels.jDateField(default=jdatetime.date.today)
+    totalView = models.IntegerField(default=0)
     hasVideo = models.BooleanField(default=False)
     hasSlider = models.BooleanField(default=False)
     isUpdated = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
+
+class blogTags(models.Model):
+    slug = models.SlugField(default=uuid.uuid4)
+    name = models.CharField(max_length=255, unique=True)
+    url = models.CharField(max_length=255, unique=True)
+    view = models.IntegerField(default=0)
+
+    def __str__(self) -> str:
+        return self.name
+    
+    @classmethod
+    def getPopularTags(cls, limit=10):
+        """
+        Return the top 'limit' most viewed blog tags.
+        """
+        return cls.objects.order_by('-view')[:limit]
 
 class blogMeta(models.Model):
     blog = models.OneToOneField(blog, on_delete=models.CASCADE, related_name='blogMeta')
@@ -67,12 +84,9 @@ class blogSlides(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogSlides')
     image = models.ImageField(upload_to=blogVideo_path)
 
-
 class blogVideos(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogVideos')
     image = models.FileField(upload_to=blogVideo_path)
-
-
 
 class blogViewTypesChoices(models.IntegerChoices):
     null = 0,
@@ -81,7 +95,7 @@ class blogViewTypesChoices(models.IntegerChoices):
 
 class blogView(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogView')
-    types = models.IntegerField(default = blogViewTypesChoices.null, choices=blogViewTypesChoices.choices)
+    # types = models.IntegerField(default = blogViewTypesChoices.null, choices=blogViewTypesChoices.choices)
     date = jmodels.jDateField(default=jdatetime.date.today)
     view = models.IntegerField()
 

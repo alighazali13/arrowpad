@@ -24,7 +24,7 @@ class categories(models.Model):
     youtubePlaylist = models.URLField(max_length=255, null=True, blank=True)
     active = models.BooleanField(default=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
 class categoryMeta(models.Model):

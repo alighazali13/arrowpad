@@ -5,6 +5,10 @@ class blog_admin(admin.ModelAdmin):
     list_display = ['id', 'title', 'author', 'categories', 'active']
 admin.site.register(blog, blog_admin)
 
+class blogTags_admin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'view', 'url']
+admin.site.register(blogTags, blogTags_admin)
+
 class blogMeta_admin(admin.ModelAdmin):
     list_display = ['id', 'blog', 'metaTitle']
 admin.site.register(blogMeta, blogMeta_admin)

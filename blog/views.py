@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .functions import getBlogObjects, getBlogObject, getBlogMeta, getBlogs, getBlogViewTotal
+from .functions import getBlogObjects, getBlogObject, getBlogMeta, getBlogs
 
 from arrowpad.models import categories
-from .models import blog
+from .models import blog, blogTags
 
 
 def kiosk(request):
@@ -18,7 +18,9 @@ def kiosk(request):
     print(category['en'])
     blogObjects = getBlogObjects(category)
 
-    newBlogsObjects = getBlogs(3)
+    newBlogsObjects = getBlogs(3, 'popular')
+
+    popularTags = blogTags.getPopularTags(limit=10)
 
 
     contexts = {
@@ -27,6 +29,7 @@ def kiosk(request):
         'category':category,
         'blogs' : blogObjects,
         'newBlogs' : newBlogsObjects,
+        'popularTags' : popularTags,
 
     }
 
@@ -42,9 +45,10 @@ def kiosk_detailes(request, url):
 
     blogObject = getBlogObject(url)
     blogMetaObject = getBlogMeta(blogObject)
-    blogView = getBlogViewTotal(blogObject)
 
-    blogsObjects = getBlogs(3, blogObject)
+    blogsObjects = getBlogs(3, 'popular', blogObject)
+
+    popularTags = blogTags.getPopularTags(limit=10)
     
 
     contexts = {
@@ -53,7 +57,7 @@ def kiosk_detailes(request, url):
         'blog' : blogObject,
         'blogMeta' : blogMetaObject,
         'blogsObjects' : blogsObjects,
-        'blogView' : blogView,
+        'popularTags' : popularTags,
     }
 
     return render(request, 'kiosk/kiosk_detailes.html', contexts)
