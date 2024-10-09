@@ -13,12 +13,33 @@ def getBlogObjects(category):
 
     return blogObjects
 
-def getBlogObject(url):
+def getBlogObjectByUrl(url):
 
     blogObject = blog.objects.none()
     if blog.objects.filter(url=url, active=True).exists():
         blogObject = blog.objects.get(url=url, active=True)
 
+    return blogObject
+
+def getBlogObjectById(id):
+    """
+    Id can’t be zero or negative 
+    and 
+    if this id is last blog we'll show first blog for next
+    """
+    blogObject = blog.objects.none()
+
+    if id >= 1:
+        try:
+            if blog.objects.filter(id=id, active=True).exists():
+                blogObject = blog.objects.get(id=id, active=True)
+        except blog.DoesNotExist:
+            if blog.objects.filter(active=True).exists():
+                blogObject = blog.objects.filter(active=True).first()
+    else:
+        if blog.objects.filter(active=True).exists():
+            blogObject = blog.objects.filter(active=True).last()
+        
     return blogObject
 
 def getBlogMeta(blogObject):

@@ -32,7 +32,7 @@
                                         <ul class="post-meta">
                                             <li>توسط <a href="#"> {{blog.author}} </a></li>
                                     <li>{{blog.publishedAt|jdatetimeFormat}}</li>
-                                    <li><a href="#">{{blog.categories.title}}</a></li>
+                                    <li><a href="{% url 'kiosk_detailes' blog.url %}">{{blog.categories.title}}</a></li>
                                 </ul>
                                 <h3><a href="{% url 'kiosk_detailes' blog.url %}"> {{blog.title}} </a></h3>
                                 <p class="brief">" {{blog.brief}} "</p>
@@ -63,14 +63,14 @@
                             <form class="search-form">
                                 <label>
                                     <span class="screen-reader-text">جستجو:</span>
-                                    <input type="search" class="search-field" placeholder="جستجو ...">
+                                    <input type="search" class="search-field" placeholder=" جستجو در {{category.fa}} ... ">
                                 </label>
                                 <button type="submit"><i class="bx bx-search-alt"></i></button>
                             </form>
                         </section>
 
                         <section class="widget widget_zelda_posts_thumb">
-                            <h3 class="widget-title">پست های محبوب</h3>
+                            <h3 class="widget-title"> جدیدترین {{category.fa}} </h3>
                             {% for blog in newBlogs %}
                                 <article class="item">
                                     <a href="{% url 'kiosk_detailes' blog.url %}" class="thumb">

@@ -75,16 +75,16 @@
                         <div class="zelda-post-navigation">
                             <div class="prev-link-wrapper">
                                 <div class="info-prev-link-wrapper">
-                                    <a href="#">
+                                    <a href="{% url 'kiosk_detailes' pervBlog.url %}">
                                         <span class="image-prev">
-                                            <img src="{% static 'arrowpad/img/main-blog-img1.jpg' %}" alt="image">
+                                            <img src="/media/{{pervBlog.poster}}" alt="{{pervBlog.title}} عکس مقاله">
                                             <span class="post-nav-title">قبلی</span>
                                         </span>
     
                                         <span class="prev-link-info-wrapper">
-                                            <span class="prev-title">مهارت های کاربردی در برنامه نویسی اندروید</span>
+                                            <span class="prev-title"> {{pervBlog.title}} </span>
                                             <span class="meta-wrapper">
-                                                <span class="date-post">21 دی 1398</span>
+                                                <span class="date-post"> {{pervBlog.publishedAt|jdatetimeFormat}} </span>
                                             </span>
                                         </span>
                                     </a>
@@ -93,16 +93,16 @@
     
                             <div class="next-link-wrapper">
                                 <div class="info-next-link-wrapper">
-                                    <a href="#">
+                                    <a href="{% url 'kiosk_detailes' nextBlog.url %}">
                                         <span class="next-link-info-wrapper">
-                                            <span class="next-title">مهارت های کاربردی در برنامه نویسی اندروید</span>
+                                            <span class="next-title"> {{nextBlog.title}} </span>
                                             <span class="meta-wrapper">
-                                                <span class="date-post">21 دی 1398</span>
+                                                <span class="date-post"> {{nextBlog.publishedAt|jdatetimeFormat}} </span>
                                             </span>
                                         </span>
     
                                         <span class="image-next">
-                                            <img src="{% static 'arrowpad/img/main-blog-img2.jpg' %}" alt="image">
+                                            <img src="/media/{{nextBlog.poster}}" alt="{{nextBlog.title}} عکس مقاله">
                                             <span class="post-nav-title">بعدی</span>
                                         </span>
                                     </a>
@@ -293,14 +293,14 @@
                             <form class="search-form">
                                 <label>
                                     <span class="screen-reader-text"> جستجو در کیوسک : </span>
-                                    <input type="search" class="search-field" placeholder=" جستجو در کیوسک ... ">
+                                    <input type="search" class="search-field" placeholder=" جستجو در {{category.fa}} ... ">
                                 </label>
                                 <button type="submit"><i class="bx bx-search-alt"></i></button>
                             </form>
                         </section>
 
                         <section class="widget widget_zelda_posts_thumb">
-                            <h3 class="widget-title">پست های محبوب</h3>
+                            <h3 class="widget-title"> جدیدترین {{category.fa}} </h3>
                             {% for blog in blogsObjects %}
                                 <article class="item">
                                     <a href="#" class="thumb">
@@ -331,7 +331,7 @@
                             <h3 class="widget-title">برچسب های محبوب</h3>
 
                             <div class="tagcloud">
-                                
+
                                 {% for tag in popularTags %}
                                     <a href="#"> {{tag.name}} <span class="tag-link-count"> ({{tag.view}})</span></a>
                                 {% endfor %}

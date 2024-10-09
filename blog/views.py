@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .functions import getBlogObjects, getBlogObject, getBlogMeta, getBlogs
+from .functions import getBlogObjects, getBlogObjectByUrl, getBlogObjectById, getBlogMeta, getBlogs
 
 from arrowpad.models import categories
 from .models import blog, blogTags
@@ -15,7 +15,6 @@ def kiosk(request):
 
     
     category = {'en' : 'kiosk', 'fa' : 'کیوسک'}
-    print(category['en'])
     blogObjects = getBlogObjects(category)
 
     newBlogsObjects = getBlogs(3, 'popular')
@@ -43,21 +42,26 @@ def kiosk_detailes(request, url):
         categoriesObject = categories.objects.filter(active=True)
         categoriesStatus = 200
 
-    blogObject = getBlogObject(url)
+    category = {'en' : 'kiosk', 'fa' : 'کیوسک'}
+    blogObject = getBlogObjectByUrl(url)
+    pervBlog = getBlogObjectById(blogObject.id - 1)
+    nextBlog = getBlogObjectById(blogObject.id + 1)
     blogMetaObject = getBlogMeta(blogObject)
 
     blogsObjects = getBlogs(3, 'popular', blogObject)
 
     popularTags = blogTags.getPopularTags(limit=10)
-    
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
+        'category' : category,
         'blog' : blogObject,
         'blogMeta' : blogMetaObject,
         'blogsObjects' : blogsObjects,
         'popularTags' : popularTags,
+        'pervBlog' : pervBlog,
+        'nextBlog' : nextBlog,
     }
 
     return render(request, 'kiosk/kiosk_detailes.html', contexts)
@@ -73,7 +77,7 @@ def souls(request):
     
     category = {'en' : 'souls', 'fa' : 'سولز شناسی'}
     print(category['en'])
-    blogObjects = getBlogObjects(category)
+    blogObjects = getBlogObjectByUrls(category)
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
@@ -112,7 +116,7 @@ def fact(request):
 
     category = {'en' : 'fact', 'fa' : 'فکت'}
     print(category['en'])
-    blogObjects = getBlogObjects(category)
+    blogObjects = getBlogObjectByUrls(category)
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
@@ -150,7 +154,7 @@ def microscope(request):
 
     category = {'en' : 'microscope', 'fa' : 'میکروسکوپ'}
     print(category['en'])
-    blogObjects = getBlogObjects(category)
+    blogObjects = getBlogObjectByUrls(category)
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
