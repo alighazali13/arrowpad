@@ -1,5 +1,9 @@
-import jdatetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Prefetch
+import jdatetime
+
+from blog.models import blog
+
 
 
 def getJdatetime_JMonth(value):
@@ -9,9 +13,8 @@ def getJdatetime_JMonth(value):
     
     year, month, day = map(int, str(value).split('-'))
     myDate = jdatetime.date(year, month, day)
-    formatted_date = f"{myDate.day} {months[myDate.month - 1]} {myDate.year}"
 
-    return formatted_date
+    return f"{myDate.day} {months[myDate.month - 1]} {myDate.year}"
 
 def paginate(objects, perPage, request):
 
@@ -25,3 +28,11 @@ def paginate(objects, perPage, request):
             result = object_page.page(object_page.num_pages)
 
       return result
+
+def getCategoriesWithBlogs(categoriesObject, num):
+      blogs_by_category = {
+        category: blog.objects.filter(categories=category, active=True)[:6] 
+        for category in categoriesObject
+      }
+      
+      return blogs_by_category

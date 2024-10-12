@@ -1,5 +1,6 @@
 {% extends 'arrowpad/masterpage.html' %}
 {% load static %}
+{% load dict %}
 
 {% block content %}
     <!-- Start Main Banner Area -->
@@ -413,27 +414,35 @@
                 
                 <div class="tab-content" id="myTabContent">
                     {% for category in categories %}
-                        <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{category.en_name}}" role="tabpanel">
+                        <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ category.en_name }}" role="tabpanel">
                             <div class="row">
-                                {% for blog in blogs_by_category.category.en_name %}
+                                {% for blog in blogs_by_category|get_item:category %}
                                     <div class="col-lg-4 col-md-6">
                                         <div class="single-live-stream-box">
-                                            <img src="/media/{{blog.poster}}" alt="image">
-
+                                            <img src="/media/{{ blog.poster }}" alt="image">
                                             <div class="content">
-                                                <h3>فری فایر زنده <i class="flaticon-play"></i></h3>
+                                                {% if blog.hasVideo %}
+                                                    <i class='bx bxl-youtube'></i>
+                                                {% endif %}
+                                                {% if blog.hasVideo == False %}
+                                                    <i class='bx bxl-blogger' ></i>
+                                                {% endif %}
+                                                <h3> {{ blog.title }} </h3>
+                                                    
                                             </div>
-
-                                            <a href="#" target="_blank" class="link-btn" target="_blank"></a>
+                                            <a href="{% url 'kiosk_detailes' blog.url %}" class="link-btn"></a>
                                         </div>
                                     </div>
+                                {% empty %}
+                                <div class="tab-pane-empty">
+                                    <span> مقاله ای برای {{category.title}} منتشر نشده است </span>
+                                </div>
                                 {% endfor %}
-
                             </div>
                         </div>
                     {% endfor %}
-                    
                 </div>
+
             </div>
         </div>
     </section>

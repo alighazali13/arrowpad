@@ -2508,6 +2508,8 @@ Blog Details Area CSS
   border: none !important;
 }
 
+
+
 .blog-details-desc .article-content {
   margin-top: 30px;
 }
@@ -3436,21 +3438,22 @@ Live Stream Area CSS
 }
 
 .single-live-stream-box .content h3 {
-  margin-bottom: 0;
+  margin-bottom: 10px;
   text-transform: uppercase;
   display: inline-block;
-  font-size: 34px;
+  font-size: 24px;
   font-weight: 600;
+  line-height: 35px;
 }
 
-.single-live-stream-box .content h3 i {
+.single-live-stream-box .content i {
   width: 40px;
   height: 40px;
   line-height: 40px;
   text-align: center;
   background-color: #d2d0d1;
   color: var(--mainColor);
-  font-size: 18px;
+  font-size: 24px;
   display: inline-block;
   border-radius: 50%;
   -webkit-transition: var(--transition);
@@ -5659,6 +5662,15 @@ Products Details Area CSS
 .products-details-tabs .tab-content .tab-pane .review-form-wrapper form button:hover {
   background-color: var(--whiteColor);
   color: var(--blackColor);
+}
+
+.tab-pane-empty{
+  height: 300px; 
+  width: 100%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background-color: var(--blackColor);
 }
 
 /*================================================

@@ -86,7 +86,7 @@ class blogSlides(models.Model):
 
 class blogVideos(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogVideos')
-    image = models.FileField(upload_to=blogVideo_path)
+    url = models.URLField(max_length=255)
 
 class blogViewTypesChoices(models.IntegerChoices):
     null = 0,
