@@ -32,7 +32,6 @@ def kiosk(request):
         'blogs' : paginatedBlogObject,
         'newBlogs' : newBlogsObjects,
         'popularTags' : popularTags,
-
     }
 
     return render(request, 'kiosk/kiosk.html', contexts)
