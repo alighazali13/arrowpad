@@ -13,7 +13,7 @@ def landing_page(request):
 
     blogs_by_category = {}
     for category in categoriesObject:
-        blogs_by_category[category.en_name] = blog.objects.filter(categories=category)
+        blogs_by_category[category.en_name] = blog.objects.filter(categories=category).order_by('-publishedAt')[:6]
 
     
 

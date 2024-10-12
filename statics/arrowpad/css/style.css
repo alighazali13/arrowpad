@@ -1947,7 +1947,7 @@ Match Details Area CSS
   display: inline-block;
   margin-right: 20px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 100;
   color: var(--mainColor);
   position: relative;
 }
@@ -2512,6 +2512,12 @@ Blog Details Area CSS
   margin-top: 30px;
 }
 
+.blog-details-desc .article-content h1 {
+  margin-top: 25px; 
+  margin-bottom: 20px; 
+  font-size: 32px;
+}
+
 .blog-details-desc .article-content .entry-meta ul {
   padding-left: 0;
   margin-bottom: 0;
@@ -2526,13 +2532,13 @@ Blog Details Area CSS
   text-transform: uppercase;
   letter-spacing: 0px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   padding-right: 20px;
   padding-left: 45px;
 }
 
 .blog-details-desc .article-content .entry-meta ul li i {
-  font-size: 32px;
+  font-size: 24px;
   color: #cfcfcf;
   position: absolute;
   left: 0;
@@ -2552,7 +2558,7 @@ Blog Details Area CSS
 
 .blog-details-desc .article-content .entry-meta ul li a {
   display: inline-block;
-  font-size: var(--fontSize);
+  /* font-size: var(--fontSize); */
 }
 
 .blog-details-desc .article-content .entry-meta ul li:last-child {
