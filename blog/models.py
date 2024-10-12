@@ -57,8 +57,6 @@ class blog(models.Model):
     def __str__(self) -> str:
         return self.title
     
-    
-
 class blogTags(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
     name = models.CharField(max_length=255, unique=True)
@@ -101,3 +99,18 @@ class blogView(models.Model):
     date = jmodels.jDateField(default=jdatetime.date.today)
     view = models.IntegerField()
 
+class blogComment(models.Model):
+    blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogComment')
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=100)
+    comment = models.TextField()
+    jdate = jmodels.jDateField(default=jdatetime.date.today)
+    active = models.BooleanField(default=False)
+
+class blogReplies(models.Model):
+    blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogReplies')
+    comment = models.ForeignKey(blogComment, on_delete=models.CASCADE, related_name='commentReplies')
+    admin = models.CharField(max_length=50)
+    reply = models.TextField()
+    jdate = jmodels.jDateField(default=jdatetime.date.today)
+    active = models.BooleanField(default=False)

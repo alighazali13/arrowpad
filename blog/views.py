@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .functions import getBlogObjects, getBlogObjectByUrl, getBlogObjectById, getBlogMeta, getBlogs
+from .functions import getBlogObjects, getBlogObjectByUrl, getBlogObjectById, getBlogMeta, getBlogs, getBlogCommentsWithReplies
 from arrowpad.functions import paginate
 
 from arrowpad.models import categories
@@ -54,6 +54,8 @@ def kiosk_detailes(request, url):
 
     popularTags = blogTags.getPopularTags(limit=10)
 
+    blogCommentObject = getBlogCommentsWithReplies(blogObject)
+
     print('nextBlog')
     print(nextBlog)
     contexts = {
@@ -66,6 +68,7 @@ def kiosk_detailes(request, url):
         'popularTags' : popularTags,
         'pervBlog' : pervBlog,
         'nextBlog' : nextBlog,
+        'comments' : blogCommentObject,
     }
 
     return render(request, 'kiosk/kiosk_detailes.html', contexts)

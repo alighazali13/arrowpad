@@ -112,144 +112,65 @@
 
                         <div class="comments-area">
                             <h3 class="comments-title">2 نظر:</h3>
-
-                            <ol class="comment-list">
-                                <li class="comment">
-                                    <article class="comment-body">
-                                        <footer class="comment-meta">
-                                            <div class="comment-author vcard">
-                                                <img src="{% static 'arrowpad/img/user1.jpg' %}" class="avatar" alt="image">
-                                                <b class="fn">جان جونز</b>
-                                                <span class="says">می گوید:</span>
-                                            </div>
-
-                                            <div class="comment-metadata">
-                                                <a href="#">
-                                                    <span>24 دی 1398 در 10:59 صبح</span>
-                                                </a>
-                                            </div>
-                                        </footer>
-
-                                        <div class="comment-content">
-                                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
-                                        </div>
-
-                                        <div class="reply">
-                                            <a href="#" class="comment-reply-link">پاسخ دادن</a>
-                                        </div>
-                                    </article>
-
-                                    <ol class="children">
-                                        <li class="comment">
-                                            <article class="comment-body">
-                                                <footer class="comment-meta">
-                                                    <div class="comment-author vcard">
-                                                        <img src="{% static 'arrowpad/img/user2.jpg' %}" class="avatar" alt="image">
-                                                        <b class="fn">جان جونز</b>
-                                                <span class="says">می گوید:</span>
-                                            </div>
-
-                                            <div class="comment-metadata">
-                                                <a href="#">
-                                                    <span>24 دی 1398 در 10:59 صبح</span>
-                                                </a>
-                                            </div>
-                                        </footer>
-
-                                        <div class="comment-content">
-                                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
-                                        </div>
-
-                                        <div class="reply">
-                                            <a href="#" class="comment-reply-link">پاسخ دادن</a>
+                            {% for comment in comments %}
+                                <ol class="comment-list">
+                                    <li class="comment">
+                                        <article class="comment-body">
+                                            <footer class="comment-meta">
+                                                <div class="comment-author vcard">
+                                                    <img src="{% static 'arrowpad/img/user1.jpg' %}" class="avatar" alt="image">
+                                                    <b class="fn"> {{comment.name}} </b>
+                                                    <span class="says">می گوید:</span>
                                                 </div>
-                                            </article>
 
+                                                <div class="comment-metadata">
+                                                    <span> {{comment.jdate|jdatetimeFormat}} </span>
+                                                </div>
+                                            </footer>
+
+                                            <div class="comment-content">
+                                                <p> {{comment.comment}} </p>
+                                            </div>
+
+                                            <div class="reply">
+                                                <a href="#" class="comment-reply-link">پاسخ دادن</a>
+                                            </div>
+                                        </article>
+                                        {% for reply in comment.commentReplies.all %}
                                             <ol class="children">
                                                 <li class="comment">
                                                     <article class="comment-body">
                                                         <footer class="comment-meta">
                                                             <div class="comment-author vcard">
-                                                                <img src="{% static 'arrowpad/img/user3.jpg' %}" class="avatar" alt="image">
-                                                                <b class="fn">جان جونز</b>
-                                                <span class="says">می گوید:</span>
-                                            </div>
+                                                                <img src="{% static 'arrowpad/img/user2.jpg' %}" class="avatar" alt="image">
+                                                                <b class="fn"> {{reply.admin}} </b>
+                                                                <span class="says">می گوید:</span>
+                                                            </div>
 
-                                            <div class="comment-metadata">
-                                                <a href="#">
-                                                    <span>24 دی 1398 در 10:59 صبح</span>
-                                                </a>
-                                            </div>
-                                        </footer>
+                                                            <div class="comment-metadata">
+                                                                <span> {{comment.jdate|jdatetimeFormat}} </span>
+                                                            </div>
+                                                        </footer>
 
-                                        <div class="comment-content">
-                                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
-                                        </div>
-
-                                        <div class="reply">
-                                            <a href="#" class="comment-reply-link">پاسخ دادن</a>
+                                                        <div class="comment-content">
+                                                            <p> {{reply.reply}} </p>
                                                         </div>
+
+                                                        <!-- <div class="reply">
+                                                            <a href="#" class="comment-reply-link">پاسخ دادن</a>
+                                                        </div> -->
                                                     </article>
+
+                                                    
+
                                                 </li>
                                             </ol>
-                                        </li>
-                                    </ol>
-                                </li>
+                                        {% endfor %}
+                                    </li>
 
-                                <li class="comment">
-                                    <article class="comment-body">
-                                        <footer class="comment-meta">
-                                            <div class="comment-author vcard">
-                                                <img src="{% static 'arrowpad/img/user4.jpg' %}" class="avatar" alt="image">
-                                                <b class="fn">جان جونز</b>
-                                                <span class="says">می گوید:</span>
-                                            </div>
-
-                                            <div class="comment-metadata">
-                                                <a href="#">
-                                                    <span>24 دی 1398 در 10:59 صبح</span>
-                                                </a>
-                                            </div>
-                                        </footer>
-
-                                        <div class="comment-content">
-                                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
-                                        </div>
-
-                                        <div class="reply">
-                                            <a href="#" class="comment-reply-link">پاسخ دادن</a>
-                                        </div>
-                                    </article>
-
-                                    <ol class="children">
-                                        <li class="comment">
-                                            <article class="comment-body">
-                                                <footer class="comment-meta">
-                                                    <div class="comment-author vcard">
-                                                        <img src="{% static 'arrowpad/img/user2.jpg' %}" class="avatar" alt="image">
-                                                        <b class="fn">جان جونز</b>
-                                                <span class="says">می گوید:</span>
-                                            </div>
-
-                                            <div class="comment-metadata">
-                                                <a href="#">
-                                                    <span>24 دی 1398 در 10:59 صبح</span>
-                                                </a>
-                                            </div>
-                                        </footer>
-
-                                        <div class="comment-content">
-                                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
-                                        </div>
-
-                                        <div class="reply">
-                                            <a href="#" class="comment-reply-link">پاسخ دادن</a>
-                                                </div>
-                                            </article>
-                                        </li>
-                                    </ol>
-                                </li>
-                            </ol>
+                                    
+                                </ol>
+                            {% endfor %}
 
                             <div class="comment-respond">
                                 <h3 class="comment-reply-title">نظر بدهید</h3>

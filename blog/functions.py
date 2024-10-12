@@ -1,4 +1,6 @@
-from .models import blog, blogMeta,  blogView, blogViewTypesChoices
+from django.db.models import Prefetch
+
+from .models import blog, blogMeta,  blogView, blogViewTypesChoices, blogComment, blogReplies
 from arrowpad.models import categories
 
 
@@ -80,3 +82,14 @@ def getBlogViewTotal(blogObject):
     view = blogViewObject.view
     return view
 
+def getBlogCommentsWithReplies(blogObject):
+
+    blogCommentsObject = blogComment.objects.none()
+    if blogComment.objects.filter(blog = blogObject, active=True).exists():
+        blogCommentsObject = blogComment.objects.filter(blog=blogObject, active=True).prefetch_related(
+            Prefetch(
+                'commentReplies', queryset=blogReplies.objects.filter(active=True)
+            )
+    )
+
+    return blogCommentsObject
