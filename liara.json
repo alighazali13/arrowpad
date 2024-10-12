@@ -1,6 +1,6 @@
 {
     "platform": "django",
-    "app": "develope-arrowpad",
+    "app": "arrowpad",
     "disks":[
         {
             "name": "data",

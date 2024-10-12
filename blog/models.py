@@ -56,6 +56,8 @@ class blog(models.Model):
 
     def __str__(self) -> str:
         return self.title
+    
+    
 
 class blogTags(models.Model):
     slug = models.SlugField(default=uuid.uuid4)

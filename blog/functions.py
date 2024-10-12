@@ -2,6 +2,7 @@ from .models import blog, blogMeta,  blogView, blogViewTypesChoices
 from arrowpad.models import categories
 
 
+
 def getBlogObjects(category):
 
     categoryObject = categories.objects.none()
@@ -28,14 +29,18 @@ def getBlogObjectById(id):
     if this id is last blog we'll show first blog for next
     """
     blogObject = blog.objects.none()
-
+    print(id)
     if id >= 1:
-        try:
-            if blog.objects.filter(id=id, active=True).exists():
-                blogObject = blog.objects.get(id=id, active=True)
-        except blog.DoesNotExist:
-            if blog.objects.filter(active=True).exists():
-                blogObject = blog.objects.filter(active=True).first()
+        
+        # try:
+        if blog.objects.filter(id=id, active=True).exists():
+            blogObject = blog.objects.get(id=id, active=True)
+        else:
+            blogObject = blog.objects.filter(active=True).order_by('id').first()
+        # except blog.DoesNotExist:
+        #     print('exepct')
+        #     if blog.objects.filter(active=True).exists():
+        #         blogObject = blog.objects.filter(active=True).order_by('id').first()
     else:
         if blog.objects.filter(active=True).exists():
             blogObject = blog.objects.filter(active=True).last()
