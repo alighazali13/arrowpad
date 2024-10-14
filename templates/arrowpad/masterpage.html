@@ -10,6 +10,18 @@
         <meta name="description" content="{% block meta_description %}  {% endblock meta_description %}">
         <meta name="author" content="{% block meta_author %} arrowpad {% endblock meta_author %}">
 
+        <meta property="og:title" content="{% block og_title %} {% endblock og_title %}" />
+        <meta property="og:description" content="{% block og_description %} {% endblock og_description %}" />
+        <meta property="og:image" content="{% block og_img %} {% endblock og_img %}" />
+        <meta property="og:url" content="{% block og_url %} {% endblock og_url %}" />
+        <meta property="og:type" content="{% block og_type %} {% endblock og_type %}" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content=" {% block twitter_title %} {% endblock twitter_title %} " />
+        <meta name="twitter:description" content=" {% block twitter_description %} {% endblock twitter_description %} " />
+        <meta name="twitter:image" content=" {% block twitter_img %} {% endblock twitter_img %} " />
+        <meta name="twitter:url" content=" {% block twitter_url %} {% endblock twitter_url %} " />
+
         <!-- Links of CSS files -->
         <link rel="stylesheet" href="{% static 'arrowpad/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'arrowpad/css/animate.min.css' %}">

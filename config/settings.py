@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
 ]
 
+INSTALLED_APPS += ['django_social_share']
+
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
