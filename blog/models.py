@@ -1,46 +1,36 @@
 from django.db import models
 from django.utils.translation import gettext as _
-import uuid, os, jdatetime
+import uuid, os, jdatetime, re
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from PIL import Image
 from django_jalali.db import models as jmodels
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 from arrowpad.models import categories
 
-def blogPoster_path(instance, fileName):
-    folderName = instance.title
-    if ' ' in instance.title:
-        folderName = instance.title.replace(' ','_')
-    if '.' in instance.title:
-        folderName = instance.title.replace('.','_')
-    fileName = 'bp_' + uuid.uuid4().hex + uuid.uuid4().hex + '.webp'
-
-    return 'Images/Blogs/{0}/{1}'.format(folderName, fileName)
-
-def blogSlides_path(instance, fileName):
-    folderName = instance.blog.title
-    if ' ' in instance.blog.title:
-        folderName = instance.blog.title.replace(' ','_')
-    if '.' in instance.blog.title:
-        folderName = instance.blog.title.replace('.','_')
-    fileName = 'bs_' + uuid.uuid4().hex + uuid.uuid4().hex + '.webp'
-
-    return 'Images/Blogs/{0}/{1}'.format(folderName, fileName)
-
-def blogVideo_path(instance, fileName):
-    folderName = instance.blog.title
-    if ' ' in instance.blog.title:
-        folderName = instance.blog.title.replace(' ','_')
-    if '.' in instance.blog.title:
-        folderName = instance.blog.title.replace('.','_')
-    fileName = 'bv_' + uuid.uuid4().hex + uuid.uuid4().hex + '.webp'
-
-    return 'Videos/Blogs/{0}/{1}'.format(folderName, fileName)
+def blogPoster_path(instance, fileName, extension):
+    ext = ''
+    print(fileName)
+    print('fileName')
+    if extension is not None:
+        ext = extension
+    elif extension is None:
+        ext = os.path.splitext(fileName)[1].lower()
+        print('ext')
+        print(ext)
+    folderName = re.sub(r'[^\w]', '_', instance.title)
+    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
+        
+    return f'Images/Blogs/{folderName}/{unique_name}'
 
 class blog(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
     title = models.CharField(max_length=255, unique=True)
-    poster = models.ImageField(upload_to=blogPoster_path)
+    poster = models.ImageField(upload_to=lambda instance, filename: blogPoster_path(instance, filename, None))
+    posterWebp = models.ImageField(upload_to=lambda instance, filename: blogPoster_path(instance, filename, '.webp'))
+    posterJpeg = models.ImageField(upload_to=lambda instance, filename: blogPoster_path(instance, filename, '.jpeg'))
     author = models.CharField(max_length=255)
     categories = models.ForeignKey(categories, on_delete=models.CASCADE, related_name='blog')
     brief = models.TextField()
@@ -57,6 +47,7 @@ class blog(models.Model):
     def __str__(self) -> str:
         return self.title
     
+
 class blogTags(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
     name = models.CharField(max_length=255, unique=True)
@@ -80,9 +71,20 @@ class blogMeta(models.Model):
     metaDescription = models.TextField()
     metaKeywords = models.CharField(max_length=255)
 
+
+def blogSlides_path(instance, fileName):
+    folderName = instance.blog.title
+    if ' ' in instance.blog.title:
+        folderName = instance.blog.title.replace(' ','_')
+    if '.' in instance.blog.title:
+        folderName = instance.blog.title.replace('.','_')
+    fileName = 'bs_' + uuid.uuid4().hex + uuid.uuid4().hex + '.webp'
+
+    return 'Images/Blogs/{0}/{1}'.format(folderName, fileName)
+
 class blogSlides(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogSlides')
-    image = models.ImageField(upload_to=blogVideo_path)
+    image = models.ImageField(upload_to=blogSlides_path)
 
 class blogVideos(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogVideos')

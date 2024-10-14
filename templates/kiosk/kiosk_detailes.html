@@ -28,7 +28,7 @@
                             </div>
                         {% else %}
                             <div class="article-image">
-                                <img src="/media/{{blog.poster}}" alt="image">
+                                <img src="/media/{{blog.posterWebp}}" alt="image">
                             </div>
                         {% endif %}
 
@@ -85,7 +85,7 @@
                                 <div class="info-prev-link-wrapper">
                                     <a href="{% url 'kiosk_detailes' pervBlog.url %}">
                                         <span class="image-prev">
-                                            <img src="/media/{{pervBlog.poster}}" alt="{{pervBlog.title}} عکس مقاله">
+                                            <img src="/media/{{pervBlog.posterWebp}}" alt="{{pervBlog.title}} عکس مقاله">
                                             <span class="post-nav-title">قبلی</span>
                                         </span>
     
@@ -110,7 +110,7 @@
                                         </span>
     
                                         <span class="image-next">
-                                            <img src="/media/{{nextBlog.poster}}" alt="{{nextBlog.title}} عکس مقاله">
+                                            <img src="/media/{{nextBlog.posterWebp}}" alt="{{nextBlog.title}} عکس مقاله">
                                             <span class="post-nav-title">بعدی</span>
                                         </span>
                                     </a>
@@ -233,7 +233,7 @@
                             {% for blog in blogsObjects %}
                                 <article class="item">
                                     <a href="#" class="thumb">
-                                        <span class="fullimage cover bg1" role="img"><img src="/media/{{blog.poster}}" alt=""></span>
+                                        <span class="fullimage cover bg1" role="img"><img src="/media/{{blog.posterWebp}}" alt=""></span>
                                     </a>
                                     <div class="info">
                                         <span>{{blog.publishedAt|jdatetimeFormat}}</span>
@@ -287,13 +287,13 @@
 
 {% block og_title %} {{blogMeta.metaTitle}} {% endblock og_title %}
 {% block og_description %} {{blogMeta.metaDescription}} {% endblock og_description %}
-{% block og_img %} /media/{{blog.poster}} {% endblock og_img %}
+{% block og_img %} /media/{{blog.posterWebp}} {% endblock og_img %}
 {% block og_url %} {{request.build_absolute_uri}} {% endblock og_url %}
 {% block og_type %} article {% endblock og_type %}
 
 {% block twitter_title %} {{blogMeta.metaTitle}} {% endblock twitter_title %}
 {% block twitter_description %} {{blogMeta.metaDescription}} {% endblock twitter_description %}
-{% block twitter_img %} /media/{{blog.poster}} {% endblock twitter_img %}
+{% block twitter_img %} /media/{{blog.posterWebp}} {% endblock twitter_img %}
 {% block twitter_url %} {{request.build_absolute_uri}} {% endblock twitter_url %}
 
 {% block links %}

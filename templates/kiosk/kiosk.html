@@ -24,7 +24,7 @@
                                 <div class="single-blog-post-box">
                                     <div class="post-image">
                                         <a href="{% url 'kiosk_detailes' blog.url %}">
-                                            <img src="/media/{{blog.poster}}" alt="{{blog.title}}">
+                                            <img src="/media/{{blog.posterWebp}}" alt="{{blog.title}}">
                                         </a>
                                     </div>
         
@@ -80,7 +80,7 @@
                             {% for blog in newBlogs %}
                                 <article class="item">
                                     <a href="{% url 'kiosk_detailes' blog.url %}" class="thumb">
-                                        <span class="fullimage cover bg1" role="img"><img src="/media/{{blog.poster}}" alt="{{blog.title}}"></span>
+                                        <span class="fullimage cover bg1" role="img"><img src="/media/{{blog.posterWebp}}" alt="{{blog.title}}"></span>
                                     </a>
                                     <div class="info">
                                         <span>{{blog.publishedAt|jdatetimeFormat}}</span>
