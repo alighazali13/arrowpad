@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
 ]
 
-INSTALLED_APPS += ['django_social_share']
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
