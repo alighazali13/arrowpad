@@ -68,6 +68,12 @@ Default CSS
   --blackColor: #0c0305;
   --fontSize: 18px;
   --transition: .5s;
+
+  --telegram: #0088cc;
+  --facebook: #4267B2;
+  --linkedin: #0A66C2;
+  --whatsapp: #4FCE5D;
+  --twitter: #1DA1F2;
 }
 
 body {
@@ -1762,6 +1768,12 @@ Matches Area CSS
   padding-right: 20px;
 }
 
+.single-matches-box .matches-team .content .watch-list li img{
+  padding: 0; 
+  margin: 0; 
+  position: relative;
+}
+
 .single-matches-box .matches-team .content .watch-list li span {
   display: block;
   text-transform: uppercase;
@@ -2093,9 +2105,21 @@ Match Details Area CSS
   border-color: var(--whiteColor);
 }
 
+.match-details-desc .article-footer .article-share .social li a.telegram {
+  background-color: #0c0305;
+  border-color: #bebebe;
+  color: var(--whiteColor);
+}
+
+.match-details-desc .article-footer .article-share .social li a.telegram:hover, .match-details-desc .article-footer .article-share .social li a.telegram:focus {
+  color: var(--whiteColor);
+  background-color: var(--telegram);
+  border-color: var(--telegram);
+}
+
 .match-details-desc .article-footer .article-share .social li a.facebook {
-  background-color: #3b5998;
-  border-color: #3b5998;
+  background-color: #0c0305;
+  border-color: #bebebe;
   color: var(--whiteColor);
 }
 
@@ -2106,39 +2130,40 @@ Match Details Area CSS
 }
 
 .match-details-desc .article-footer .article-share .social li a.twitter {
-  background-color: #1da1f2;
-  border-color: #1da1f2;
+  background-color: #0c0305;
+  border-color: #bebebe;
   color: var(--whiteColor);
 }
 
 .match-details-desc .article-footer .article-share .social li a.twitter:hover, .match-details-desc .article-footer .article-share .social li a.twitter:focus {
   color: var(--whiteColor);
-  background-color: var(--mainColor);
-  border-color: var(--mainColor);
+  background-color: var(--twitter);
+  border-color: var(--twitter);
+}
+
+.match-details-desc .article-footer .article-share .social li a.whatsapp {
+  background-color: #0c0305;
+  border-color: #bebebe;
+  color: var(--whiteColor);
+}
+
+.match-details-desc .article-footer .article-share .social li a.whatsapp:hover, .match-details-desc .article-footer .article-share .social li a.whatsapp:focus {
+  color: var(--whiteColor);
+  background-color: var(--whatsapp);
+  border-color: var(--whatsapp);
 }
 
 .match-details-desc .article-footer .article-share .social li a.linkedin {
-  background-color: #007bb5;
-  border-color: #007bb5;
+  background-color: #0c0305;
+  border-color: #bebebe;
   color: var(--whiteColor);
+
 }
 
 .match-details-desc .article-footer .article-share .social li a.linkedin:hover, .match-details-desc .article-footer .article-share .social li a.linkedin:focus {
   color: var(--whiteColor);
-  background-color: var(--mainColor);
-  border-color: var(--mainColor);
-}
-
-.match-details-desc .article-footer .article-share .social li a.instagram {
-  background-color: #c13584;
-  border-color: #c13584;
-  color: var(--whiteColor);
-}
-
-.match-details-desc .article-footer .article-share .social li a.instagram:hover, .match-details-desc .article-footer .article-share .social li a.instagram:focus {
-  color: var(--whiteColor);
-  background-color: var(--mainColor);
-  border-color: var(--mainColor);
+  background-color: var(--linkedin);
+  border-color: var(--linkedin);
 }
 
 /*================================================
@@ -2701,7 +2726,7 @@ Blog Details Area CSS
   width: 32px;
   height: 32px;
   line-height: 37px;
-  border-radius: 50%;
+  border-radius: 5px;
   background-color: var(--mainColor);
   color: var(--whiteColor);
   border: 1px solid var(--mainColor);
@@ -2716,9 +2741,21 @@ Blog Details Area CSS
   border-color: var(--whiteColor);
 }
 
+.blog-details-desc .article-footer .article-share .social li a.telegram {
+  background-color: #0c0305;
+  border-color: #bebebe;
+  color: var(--whiteColor);
+}
+
+.blog-details-desc .article-footer .article-share .social li a.telegram:hover, .blog-details-desc .article-footer .article-share .social li a.telegram:focus {
+  color: var(--whiteColor);
+  background-color: var(--telegram);
+  border-color: var(--telegram);
+}
+
 .blog-details-desc .article-footer .article-share .social li a.facebook {
-  background-color: #3b5998;
-  border-color: #3b5998;
+  background-color: #0c0305;
+  border-color: #bebebe;
   color: var(--whiteColor);
 }
 
@@ -2729,39 +2766,39 @@ Blog Details Area CSS
 }
 
 .blog-details-desc .article-footer .article-share .social li a.twitter {
-  background-color: #1da1f2;
-  border-color: #1da1f2;
+  background-color: #0c0305;
+  border-color: #bebebe;
   color: var(--whiteColor);
 }
 
 .blog-details-desc .article-footer .article-share .social li a.twitter:hover, .blog-details-desc .article-footer .article-share .social li a.twitter:focus {
   color: var(--whiteColor);
-  background-color: var(--mainColor);
-  border-color: var(--mainColor);
+  background-color: var(--twitter);
+  border-color: var(--twitter);
+}
+
+.blog-details-desc .article-footer .article-share .social li a.whatsapp {
+  background-color: #0c0305;
+  border-color: #bebebe;
+  color: var(--whiteColor);
+}
+
+.blog-details-desc .article-footer .article-share .social li a.whatsapp:hover, .blog-details-desc .article-footer .article-share .social li a.whatsapp:focus {
+  color: var(--whiteColor);
+  background-color: var(--whatsapp);
+  border-color: var(--whatsapp);
 }
 
 .blog-details-desc .article-footer .article-share .social li a.linkedin {
-  background-color: #007bb5;
-  border-color: #007bb5;
+  background-color: #0c0305;
+  border-color: #bebebe;
   color: var(--whiteColor);
 }
 
 .blog-details-desc .article-footer .article-share .social li a.linkedin:hover, .blog-details-desc .article-footer .article-share .social li a.linkedin:focus {
   color: var(--whiteColor);
-  background-color: var(--mainColor);
-  border-color: var(--mainColor);
-}
-
-.blog-details-desc .article-footer .article-share .social li a.instagram {
-  background-color: #c13584;
-  border-color: #c13584;
-  color: var(--whiteColor);
-}
-
-.blog-details-desc .article-footer .article-share .social li a.instagram:hover, .blog-details-desc .article-footer .article-share .social li a.instagram:focus {
-  color: var(--whiteColor);
-  background-color: var(--mainColor);
-  border-color: var(--mainColor);
+  background-color: var(--linkedin);
+  border-color: var(--linkedin);
 }
 
 .blog-details-desc .article-author {
@@ -5199,47 +5236,58 @@ Products Details Area CSS
   background-color: transparent;
 }
 
+.products-details-desc .products-share .social li a.telegram {
+  background-color: #0c0305;
+  border-color: #bebebe;
+  color: var(--whiteColor);
+}
+
+.products-details-desc .products-share .social li a.telegram:hover, .products-details-desc .products-share .social li a.telegram:focus {
+  color: #0c0305;
+  background-color: transparent;
+}
+
 .products-details-desc .products-share .social li a.facebook {
-  background-color: #3b5998;
-  border-color: #3b5998;
+  background-color: #0c0305;
+  border-color: #bebebe;
   color: var(--whiteColor);
 }
 
 .products-details-desc .products-share .social li a.facebook:hover, .products-details-desc .products-share .social li a.facebook:focus {
-  color: #3b5998;
+  color: #0c0305;
   background-color: transparent;
 }
 
 .products-details-desc .products-share .social li a.twitter {
-  background-color: #1da1f2;
-  border-color: #1da1f2;
+  background-color: #0c0305;
+  border-color: #bebebe;
   color: var(--whiteColor);
 }
 
 .products-details-desc .products-share .social li a.twitter:hover, .products-details-desc .products-share .social li a.twitter:focus {
-  color: #1da1f2;
+  color: #0c0305;
+  background-color: transparent;
+}
+
+.products-details-desc .products-share .social li a.whatsapp {
+  background-color: #0c0305;
+  border-color: #bebebe;
+  color: var(--whiteColor);
+}
+
+.products-details-desc .products-share .social li a.whatsapp:hover, .products-details-desc .products-share .social li a.whatsapp:focus {
+  color: #0c0305;
   background-color: transparent;
 }
 
 .products-details-desc .products-share .social li a.linkedin {
-  background-color: #007bb5;
-  border-color: #007bb5;
+  background-color: #0c0305;
+  border-color: #bebebe;
   color: var(--whiteColor);
 }
 
 .products-details-desc .products-share .social li a.linkedin:hover, .products-details-desc .products-share .social li a.linkedin:focus {
-  color: #007bb5;
-  background-color: transparent;
-}
-
-.products-details-desc .products-share .social li a.instagram {
-  background-color: #c13584;
-  border-color: #c13584;
-  color: var(--whiteColor);
-}
-
-.products-details-desc .products-share .social li a.instagram:hover, .products-details-desc .products-share .social li a.instagram:focus {
-  color: #c13584;
+  color: #0c0305;
   background-color: transparent;
 }
 
@@ -7687,7 +7735,7 @@ Widget Sidebar CSS
   display: none;
 }
 
-.widget-area .widget_instagram ul {
+.widget-area .widget_linkedin ul {
   padding-left: 0;
   list-style-type: none;
   display: -webkit-box;
@@ -7701,7 +7749,7 @@ Widget Sidebar CSS
   margin-top: -10px;
 }
 
-.widget-area .widget_instagram ul li {
+.widget-area .widget_linkedin ul li {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 50%;
           flex: 0 0 50%;
@@ -7712,13 +7760,13 @@ Widget Sidebar CSS
   padding-top: 10px;
 }
 
-.widget-area .widget_instagram ul li .box {
+.widget-area .widget_linkedin ul li .box {
   position: relative;
   z-index: 1;
   overflow: hidden;
 }
 
-.widget-area .widget_instagram ul li .box .link-btn {
+.widget-area .widget_linkedin ul li .box .link-btn {
   display: block;
   position: absolute;
   left: 0;
@@ -7728,7 +7776,7 @@ Widget Sidebar CSS
   z-index: 3;
 }
 
-.widget-area .widget_instagram ul li .box i {
+.widget-area .widget_linkedin ul li .box i {
   position: absolute;
   left: 0;
   right: 0;
@@ -7743,12 +7791,12 @@ Widget Sidebar CSS
   z-index: 2;
 }
 
-.widget-area .widget_instagram ul li .box img {
+.widget-area .widget_linkedin ul li .box img {
   -webkit-transition: var(--transition);
   transition: var(--transition);
 }
 
-.widget-area .widget_instagram ul li .box::before {
+.widget-area .widget_linkedin ul li .box::before {
   content: '';
   position: absolute;
   left: 0;
@@ -7763,17 +7811,17 @@ Widget Sidebar CSS
   visibility: hidden;
 }
 
-.widget-area .widget_instagram ul li .box:hover::before {
+.widget-area .widget_linkedin ul li .box:hover::before {
   opacity: 0.5;
   visibility: visible;
 }
 
-.widget-area .widget_instagram ul li .box:hover img {
+.widget-area .widget_linkedin ul li .box:hover img {
   -webkit-transform: scale(1.3);
           transform: scale(1.3);
 }
 
-.widget-area .widget_instagram ul li .box:hover i {
+.widget-area .widget_linkedin ul li .box:hover i {
   opacity: 1;
   visibility: visible;
 }
@@ -9183,28 +9231,28 @@ Sidebar Modal CSS
   padding: 80px 30px;
 }
 
-.sidebarModal.modal .modal-body .instagram-list {
+.sidebarModal.modal .modal-body .linkedin-list {
   margin-top: 70px;
 }
 
-.sidebarModal.modal .modal-body .instagram-list .row {
+.sidebarModal.modal .modal-body .linkedin-list .row {
   margin-left: -5px;
   margin-right: -5px;
 }
 
-.sidebarModal.modal .modal-body .instagram-list .row .col-lg-4 {
+.sidebarModal.modal .modal-body .linkedin-list .row .col-lg-4 {
   padding-left: 5px;
   padding-right: 5px;
 }
 
-.sidebarModal.modal .modal-body .instagram-list .box {
+.sidebarModal.modal .modal-body .linkedin-list .box {
   position: relative;
   z-index: 1;
   overflow: hidden;
   margin-top: 10px;
 }
 
-.sidebarModal.modal .modal-body .instagram-list .box .link-btn {
+.sidebarModal.modal .modal-body .linkedin-list .box .link-btn {
   display: block;
   position: absolute;
   left: 0;
@@ -9214,7 +9262,7 @@ Sidebar Modal CSS
   z-index: 3;
 }
 
-.sidebarModal.modal .modal-body .instagram-list .box i {
+.sidebarModal.modal .modal-body .linkedin-list .box i {
   position: absolute;
   left: 0;
   right: 0;
@@ -9229,12 +9277,12 @@ Sidebar Modal CSS
   z-index: 2;
 }
 
-.sidebarModal.modal .modal-body .instagram-list .box img {
+.sidebarModal.modal .modal-body .linkedin-list .box img {
   -webkit-transition: var(--transition);
   transition: var(--transition);
 }
 
-.sidebarModal.modal .modal-body .instagram-list .box::before {
+.sidebarModal.modal .modal-body .linkedin-list .box::before {
   content: '';
   position: absolute;
   left: 0;
@@ -9249,17 +9297,17 @@ Sidebar Modal CSS
   visibility: hidden;
 }
 
-.sidebarModal.modal .modal-body .instagram-list .box:hover::before {
+.sidebarModal.modal .modal-body .linkedin-list .box:hover::before {
   opacity: 0.5;
   visibility: visible;
 }
 
-.sidebarModal.modal .modal-body .instagram-list .box:hover img {
+.sidebarModal.modal .modal-body .linkedin-list .box:hover img {
   -webkit-transform: scale(1.3);
           transform: scale(1.3);
 }
 
-.sidebarModal.modal .modal-body .instagram-list .box:hover i {
+.sidebarModal.modal .modal-body .linkedin-list .box:hover i {
   opacity: 1;
   visibility: visible;
 }

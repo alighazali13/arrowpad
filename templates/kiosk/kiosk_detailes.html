@@ -69,10 +69,10 @@
                             <div class="article-share">
                                 <ul class="social">
                                     <li><span>اشتراک گذاری:</span></li>
-                                    <li><a href="#" class="facebook" target="_blank"><i class='bx bxl-facebook'></i></a></li>
-                                    <li><a href="#" class="twitter" target="_blank"><i class='bx bxl-twitter'></i></a></li>
-                                    <li><a href="#" class="linkedin" target="_blank"><i class='bx bxl-linkedin'></i></a></li>
-                                    <li><a href="#" class="instagram" target="_blank"><i class='bx bxl-instagram'></i></a></li>
+                                    <li><a href="https://t.me/share/url?url={{ request.build_absolute_uri|urlencode }}&text={{ blog.title|urlencode }}" class="telegram" target="_blank"><i class='bx bxl-telegram'></i></a></li>
+                                    <li><a href="https://api.whatsapp.com/send?text={{ blog.title|urlencode }}%20{{ request.build_absolute_uri|urlencode }}" class="whatsapp" target="_blank"><i class='bx bxl-whatsapp'></i></a></li>
+                                    <li><a href="https://twitter.com/intent/tweet?text={{ blog.title|urlencode }}&url={{ request.build_absolute_uri|urlencode }}" class="twitter" target="_blank"><i class='bx bxl-twitter'></i></a></li>
+                                    <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri|urlencode }}&title={{ blog.title|urlencode }}" class="linkedin" target="_blank"><i class='bx bxl-linkedin'></i></a></li>
                                 </ul>
                             </div>
                         </div>
