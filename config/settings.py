@@ -57,8 +57,10 @@ CKEDITOR_CONFIGS = {
             'contentsLangDirection': 'rtl',
             'extraPlugins': ','.join([
                 'codesnippet',
+                'toc',
             ]),
         },
+        
 }
 
 MIDDLEWARE = [
