@@ -10,12 +10,25 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 from arrowpad.models import categories
 
-def blogPoster_path(instance, fileName, extension):
-    ext = ''
-    if extension is not None:
-        ext = extension
-    elif extension is None:
-        ext = os.path.splitext(fileName)[1].lower()
+def blogPoster_path(instance, fileName):
+    
+    ext = os.path.splitext(fileName)[1].lower()
+    folderName = re.sub(r'[^\w]', '_', instance.title)
+    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
+        
+    return f'images/blogs/{folderName}/{unique_name}'
+
+def blogPosterWebp_path(instance, fileName):
+    
+    ext = '.webp'
+    folderName = re.sub(r'[^\w]', '_', instance.title)
+    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
+        
+    return f'images/blogs/{folderName}/{unique_name}'
+
+def blogPosterJpeg_path(instance, fileName):
+    
+    ext = '.jpeg'
     folderName = re.sub(r'[^\w]', '_', instance.title)
     unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
         
@@ -24,9 +37,9 @@ def blogPoster_path(instance, fileName, extension):
 class blog(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
     title = models.CharField(max_length=255, unique=True)
-    poster = models.ImageField(upload_to=lambda instance, filename: blogPoster_path(instance, filename, None))
-    posterWebp = models.ImageField(upload_to=lambda instance, filename: blogPoster_path(instance, filename, '.webp'))
-    posterJpeg = models.ImageField(upload_to=lambda instance, filename: blogPoster_path(instance, filename, '.jpeg'))
+    poster = models.ImageField(upload_to=blogPoster_path)
+    posterWebp = models.ImageField(upload_to=blogPosterWebp_path)
+    posterJpeg = models.ImageField(upload_to=blogPosterJpeg_path)
     author = models.CharField(max_length=255)
     categories = models.ForeignKey(categories, on_delete=models.CASCADE, related_name='blog')
     brief = models.TextField()
@@ -69,20 +82,25 @@ class blogMeta(models.Model):
 
 
 def blogSlides_path(instance, fileName, extension):
-    ext = ''
-    if extension is not None:
-        ext = extension
-    elif extension is None:
-        ext = os.path.splitext(fileName)[1].lower()
-    folderName = re.sub(r'[^\w]', '_', instance.title)
+    
+    ext = os.path.splitext(fileName)[1].lower()
+    folderName = re.sub(r'[^\w]', '_', instance.blog.title)
+    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
+
+    return f'images/blogs/{folderName}/slides/{unique_name}'
+
+def blogSlidesWebp_path(instance, fileName, extension):
+    
+    ext = '.webp'
+    folderName = re.sub(r'[^\w]', '_', instance.blog.title)
     unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
 
     return f'images/blogs/{folderName}/slides/{unique_name}'
 
 class blogSlides(models.Model):
-    blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogSlides')
-    image = models.ImageField(upload_to=lambda instance, filename: blogSlides_path(instance, filename, None))
-    imageWebp = models.ImageField(upload_to=lambda instance, filename: blogSlides_path(instance, filename, '.webp'))
+    blog = models.ForeignKey(blog, on_delete = models.CASCADE, related_name = 'blogSlides')
+    image = models.ImageField(upload_to = blogSlides_path)
+    imageWebp = models.ImageField(upload_to = blogSlidesWebp_path)
 
 class blogVideos(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogVideos')
