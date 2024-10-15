@@ -11,27 +11,21 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from arrowpad.models import categories
 
 def blogPoster_path(instance, fileName):
-    
     ext = os.path.splitext(fileName)[1].lower()
     folderName = re.sub(r'[^\w]', '_', instance.title)
-    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
-        
+    unique_name = f'bp_{folderName}_{uuid.uuid4().hex}{ext}'
     return f'images/blogs/{folderName}/{unique_name}'
 
 def blogPosterWebp_path(instance, fileName):
-    
     ext = '.webp'
     folderName = re.sub(r'[^\w]', '_', instance.title)
-    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
-        
+    unique_name = f'bpw_{folderName}_{uuid.uuid4().hex}{ext}'
     return f'images/blogs/{folderName}/{unique_name}'
 
 def blogPosterJpeg_path(instance, fileName):
-    
     ext = '.jpeg'
     folderName = re.sub(r'[^\w]', '_', instance.title)
-    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
-        
+    unique_name = f'bpj_{folderName}_{uuid.uuid4().hex}{ext}'
     return f'images/blogs/{folderName}/{unique_name}'
 
 class blog(models.Model):
@@ -81,20 +75,16 @@ class blogMeta(models.Model):
     metaKeywords = models.CharField(max_length=255)
 
 
-def blogSlides_path(instance, fileName, extension):
-    
+def blogSlides_path(instance, fileName):
     ext = os.path.splitext(fileName)[1].lower()
     folderName = re.sub(r'[^\w]', '_', instance.blog.title)
-    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
-
+    unique_name = f'bsp_{folderName}_{uuid.uuid4().hex}{ext}'
     return f'images/blogs/{folderName}/slides/{unique_name}'
 
-def blogSlidesWebp_path(instance, fileName, extension):
-    
+def blogSlidesWebp_path(instance, fileName):
     ext = '.webp'
     folderName = re.sub(r'[^\w]', '_', instance.blog.title)
-    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
-
+    unique_name = f'bspw_{folderName}_{uuid.uuid4().hex}{ext}'
     return f'images/blogs/{folderName}/slides/{unique_name}'
 
 class blogSlides(models.Model):
