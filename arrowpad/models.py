@@ -3,9 +3,15 @@ import uuid, os, re
 
 def categoryVector_path(instance, fileName):
     ext = os.path.splitext(fileName)[1].lower()
-    folderName = re.sub(r'[^\w]', '_', instance.blog.title)
+    folderName = re.sub(r'[^\w]', '_', instance.title)
     unique_name = f'cv_{folderName}_{uuid.uuid4().hex}{ext}'
-    return 'images/categories/{0}/{1}'.format(folderName, fileName)
+    return f'images/categories/{folderName}/{unique_name}'
+
+def categoryVectorWebp_path(instance, fileName):
+    ext = '.webp'
+    folderName = re.sub(r'[^\w]', '_', instance.title)
+    unique_name = f'cv_{folderName}_{uuid.uuid4().hex}{ext}'
+    return f'images/categories/{folderName}/{unique_name}'
 
 
 class categories(models.Model):
@@ -13,7 +19,7 @@ class categories(models.Model):
     title = models.CharField(max_length=255)
     en_name = models.CharField(max_length=255)
     vector = models.ImageField(upload_to=categoryVector_path)
-    vectorWebp = models.ImageField(upload_to=categoryVector_path)
+    vectorWebp = models.ImageField(upload_to=categoryVectorWebp_path)
     brief = models.TextField(null=True, blank=True)
     url = models.CharField(max_length=255)
     postCount = models.IntegerField(default=0)
