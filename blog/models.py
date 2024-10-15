@@ -12,18 +12,14 @@ from arrowpad.models import categories
 
 def blogPoster_path(instance, fileName, extension):
     ext = ''
-    print(fileName)
-    print('fileName')
     if extension is not None:
         ext = extension
     elif extension is None:
         ext = os.path.splitext(fileName)[1].lower()
-        print('ext')
-        print(ext)
     folderName = re.sub(r'[^\w]', '_', instance.title)
     unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
         
-    return f'Images/Blogs/{folderName}/{unique_name}'
+    return f'images/blogs/{folderName}/{unique_name}'
 
 class blog(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
@@ -72,19 +68,21 @@ class blogMeta(models.Model):
     metaKeywords = models.CharField(max_length=255)
 
 
-def blogSlides_path(instance, fileName):
-    folderName = instance.blog.title
-    if ' ' in instance.blog.title:
-        folderName = instance.blog.title.replace(' ','_')
-    if '.' in instance.blog.title:
-        folderName = instance.blog.title.replace('.','_')
-    fileName = 'bs_' + uuid.uuid4().hex + uuid.uuid4().hex + '.webp'
+def blogSlides_path(instance, fileName, extension):
+    ext = ''
+    if extension is not None:
+        ext = extension
+    elif extension is None:
+        ext = os.path.splitext(fileName)[1].lower()
+    folderName = re.sub(r'[^\w]', '_', instance.title)
+    unique_name = f'{folderName}_{uuid.uuid4().hex}{ext}'
 
-    return 'Images/Blogs/{0}/{1}'.format(folderName, fileName)
+    return f'images/blogs/{folderName}/slides/{unique_name}'
 
 class blogSlides(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogSlides')
-    image = models.ImageField(upload_to=blogSlides_path)
+    image = models.ImageField(upload_to=lambda instance, filename: blogSlides_path(instance, filename, None))
+    imageWebp = models.ImageField(upload_to=lambda instance, filename: blogSlides_path(instance, filename, '.webp'))
 
 class blogVideos(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogVideos')

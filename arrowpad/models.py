@@ -10,7 +10,7 @@ def categoryVector_path(instance, fileName):
 
     fileName = 'cv_' + uuid.uuid4().hex + uuid.uuid4().hex + '.webp'
 
-    return 'Images/Blogs/{0}/{1}'.format(folderName, fileName)
+    return 'images/categories/{0}/{1}'.format(folderName, fileName)
 
 
 class categories(models.Model):
