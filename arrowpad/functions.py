@@ -3,6 +3,7 @@ from django.db.models import Prefetch
 import jdatetime
 
 from blog.models import blog
+from .models import categories
 
 
 
@@ -31,8 +32,15 @@ def paginate(objects, perPage, request):
 
 def getCategoriesWithBlogs(categoriesObject, num):
       blogs_by_category = {
-        category: blog.objects.filter(categories=category, active=True)[:6] 
+        category: blog.objects.filter(categories=category, active=True).order_by('-id')[:6] 
         for category in categoriesObject
       }
       
       return blogs_by_category
+
+def getCategoryObjects(title):
+
+      return categories.objects.get(title=title)
+      
+
+      

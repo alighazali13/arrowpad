@@ -9367,5 +9367,9 @@ Sidebar Modal CSS
   border-radius: 100%;
 }
 
+.category a i{
+  font-size: 40px;
+}
+
 
 /*# sourceMappingURL=style.css.map */

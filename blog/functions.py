@@ -24,7 +24,7 @@ def getBlogObjectByUrl(url):
 
     return blogObject
 
-def getBlogObjectById(id):
+def getBlogObjectById(id, categoryObject=None):
     """
     Id can’t be zero or negative 
     and 
@@ -32,20 +32,26 @@ def getBlogObjectById(id):
     """
     blogObject = blog.objects.none()
     print(id)
-    if id >= 1:
-        
-        # try:
-        if blog.objects.filter(id=id, active=True).exists():
-            blogObject = blog.objects.get(id=id, active=True)
+    if categoryObject is None:
+        if id >= 1:
+            if blog.objects.filter(id=id, active=True).exists():
+                blogObject = blog.objects.get(id=id, active=True)
+            else:
+                blogObject = blog.objects.filter(active=True).order_by('id').first()
         else:
-            blogObject = blog.objects.filter(active=True).order_by('id').first()
-        # except blog.DoesNotExist:
-        #     print('exepct')
-        #     if blog.objects.filter(active=True).exists():
-        #         blogObject = blog.objects.filter(active=True).order_by('id').first()
+            if blog.objects.filter(active=True).exists():
+                blogObject = blog.objects.filter(active=True).last()
     else:
-        if blog.objects.filter(active=True).exists():
-            blogObject = blog.objects.filter(active=True).last()
+        if id >= 1:
+            
+            if blog.objects.filter(id=id, categories=categoryObject, active=True).exists():
+                blogObject = blog.objects.get(id=id, categories=categoryObject, active=True)
+            else:
+                blogObject = blog.objects.filter(categories=categoryObject, active=True).order_by('id').first()
+        else:
+            if blog.objects.filter(categories=categoryObject, active=True).exists():
+                blogObject = blog.objects.filter(categories=categoryObject, active=True).last()
+
         
     return blogObject
 
@@ -56,21 +62,37 @@ def getBlogMeta(blogObject):
         blogMetaObject = blogMeta.objects.get(blog = blogObject)
     return blogMetaObject
 
-def getBlogs(num, types=None, currentBlog = None):
-    print(currentBlog)
+def getBlogs(num, types=None, currentBlog = None, categoryObject = None):
     
     blogsObjects = blog.objects.none()
-    if blog.objects.filter(active=True).exists():
-        if types is None:
-            if currentBlog is not None:
-                blogsObjects = blog.objects.filter(active=True).exclude(id=currentBlog.id).order_by('-id')[:num]
-            else:
-                blogsObjects = blog.objects.filter(active=True).order_by('-id')[:num]
-        if types == 'popular':
-            if currentBlog is not None:
-                blogsObjects = blog.objects.filter(active=True).exclude(id=currentBlog.id).order_by('-totalView')[:num]
-            else:
-                blogsObjects = blog.objects.filter(active=True).order_by('-totalView')[:num]
+    if categoryObject is None:
+        if blog.objects.filter(active=True).exists():
+            if types is None:
+                if currentBlog is None:
+                    blogsObjects = blog.objects.filter(active=True).order_by('-id')[:num]
+                else:
+                    blogsObjects = blog.objects.filter(active=True).exclude(id=currentBlog.id).order_by('-id')[:num]
+
+            if types == 'popular':
+                if currentBlog is None:
+                    blogsObjects = blog.objects.filter(active=True).order_by('-totalView')[:num]
+                else:
+                    blogsObjects = blog.objects.filter(active=True).exclude(id=currentBlog.id).order_by('-totalView')[:num]
+    else:
+        if blog.objects.filter(active=True, categories=categoryObject).exists():
+            if types is None:
+                if currentBlog is None:
+                    blogsObjects = blog.objects.filter(active=True, categories=categoryObject).order_by('-id')[:num]
+                else:
+                    blogsObjects = blog.objects.filter(active=True, categories=categoryObject).exclude(id=currentBlog.id).order_by('-id')[:num]
+
+            if types == 'popular':
+                if currentBlog is None:
+                    blogsObjects = blog.objects.filter(active=True, categories=categoryObject).order_by('-totalView')[:num]
+                else:
+                    blogsObjects = blog.objects.filter(active=True, categories=categoryObject).exclude(id=currentBlog.id).order_by('-totalView')[:num]
+
+
 
     return blogsObjects
 

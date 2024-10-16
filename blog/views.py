@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .functions import getBlogObjects, getBlogObjectByUrl, getBlogObjectById, getBlogMeta, getBlogs, getBlogCommentsWithReplies
-from arrowpad.functions import paginate
+from arrowpad.functions import paginate, getCategoryObjects
 
 from arrowpad.models import categories
 from .models import blog, blogTags
@@ -17,9 +17,12 @@ def kiosk(request):
 
     
     category = {'en' : 'kiosk', 'fa' : 'کیوسک'}
+
     blogObjects = getBlogObjects(category)
 
-    newBlogsObjects = getBlogs(3, 'popular')
+    thisCategoryObjects = getCategoryObjects(category['fa'])
+
+    newBlogsObjects = getBlogs(3, 'popular', thisCategoryObjects)
 
     popularTags = blogTags.getPopularTags(limit=10)
 
@@ -34,7 +37,7 @@ def kiosk(request):
         'popularTags' : popularTags,
     }
 
-    return render(request, 'kiosk/kiosk.html', contexts)
+    return render(request, 'arrowpad/blog/kiosk/kiosk.html', contexts)
 
 def kiosk_detailes(request, url):
 
@@ -45,19 +48,21 @@ def kiosk_detailes(request, url):
         categoriesStatus = 200
 
     category = {'en' : 'kiosk', 'fa' : 'کیوسک'}
+
     blogObject = getBlogObjectByUrl(url)
-    pervBlog = getBlogObjectById(blogObject.id - 1)
-    nextBlog = getBlogObjectById(blogObject.id + 1)
     blogMetaObject = getBlogMeta(blogObject)
 
-    blogsObjects = getBlogs(3, 'popular', blogObject)
+    thisCategoryObjects = getCategoryObjects(category['fa'])
+
+    pervBlog = getBlogObjectById(blogObject.id - 1, thisCategoryObjects)
+    nextBlog = getBlogObjectById(blogObject.id + 1, thisCategoryObjects)
+
+    blogsObjects = getBlogs(3, 'popular', blogObject, thisCategoryObjects)
 
     popularTags = blogTags.getPopularTags(limit=10)
 
     blogCommentObject = getBlogCommentsWithReplies(blogObject)
 
-    print('nextBlog')
-    print(nextBlog)
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
@@ -71,7 +76,7 @@ def kiosk_detailes(request, url):
         'comments' : blogCommentObject,
     }
 
-    return render(request, 'kiosk/kiosk_detailes.html', contexts)
+    return render(request, 'arrowpad/blog/kiosk/kiosk_detailes.html', contexts)
 
 def souls(request):
 
@@ -83,19 +88,29 @@ def souls(request):
 
     
     category = {'en' : 'souls', 'fa' : 'سولز شناسی'}
-    print(category['en'])
-    blogObjects = getBlogObjectByUrls(category)
+    
+    blogObjects = getBlogObjects(category)
+
+    thisCategoryObjects = getCategoryObjects(category['fa'])
+
+    newBlogsObjects = getBlogs(3, 'popular', thisCategoryObjects)
+
+    popularTags = blogTags.getPopularTags(limit=10)
+
+    paginatedBlogObject = paginate(blogObjects, 5, request )
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
         'category':category,
-        'blogs' : blogObjects
+        'blogs' : paginatedBlogObject,
+        'newBlogs' : newBlogsObjects,
+        'popularTags' : popularTags,
     }
 
-    return render(request, 'souls/souls.html', contexts)
+    return render(request, 'arrowpad/blog/souls/souls.html', contexts)
 
-def souls_detailes(request, meta_title):
+def souls_detailes(request, url):
 
     categoriesStatus = 404
     categoriesObject = categories.objects.none()
@@ -103,14 +118,36 @@ def souls_detailes(request, meta_title):
         categoriesObject = categories.objects.filter(active=True)
         categoriesStatus = 200
 
-    
+    category = {'en' : 'souls', 'fa' : 'سولز شناسی'}
+
+    blogObject = getBlogObjectByUrl(url)
+    blogMetaObject = getBlogMeta(blogObject)
+
+    thisCategoryObjects = getCategoryObjects(category['fa'])
+
+    pervBlog = getBlogObjectById(blogObject.id - 1, thisCategoryObjects)
+    nextBlog = getBlogObjectById(blogObject.id + 1, thisCategoryObjects)
+
+    blogsObjects = getBlogs(3, 'popular', blogObject, thisCategoryObjects)
+
+    popularTags = blogTags.getPopularTags(limit=10)
+
+    blogCommentObject = getBlogCommentsWithReplies(blogObject)
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
-        'categories' : categoriesObject
+        'categories' : categoriesObject,
+        'category' : category,
+        'blog' : blogObject,
+        'blogMeta' : blogMetaObject,
+        'blogsObjects' : blogsObjects,
+        'popularTags' : popularTags,
+        'pervBlog' : pervBlog,
+        'nextBlog' : nextBlog,
+        'comments' : blogCommentObject,
     }
 
-    return render(request, 'souls/souls_detailes.html', contexts)
+    return render(request, 'arrowpad/blog/souls/souls_detailes.html', contexts)
 
 def fact(request):
 
@@ -122,19 +159,29 @@ def fact(request):
 
 
     category = {'en' : 'fact', 'fa' : 'فکت'}
-    print(category['en'])
-    blogObjects = getBlogObjectByUrls(category)
+    
+    blogObjects = getBlogObjects(category)
+
+    thisCategoryObjects = getCategoryObjects(category['fa'])
+
+    newBlogsObjects = getBlogs(3, 'popular', thisCategoryObjects)
+
+    popularTags = blogTags.getPopularTags(limit=10)
+
+    paginatedBlogObject = paginate(blogObjects, 5, request )
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
         'category':category,
-        'blogs' : blogObjects
+        'blogs' : paginatedBlogObject,
+        'newBlogs' : newBlogsObjects,
+        'popularTags' : popularTags,
     }
 
-    return render(request, 'fact/fact.html', contexts)
+    return render(request, 'arrowpad/blog/fact/fact.html', contexts)
 
-def fact_detailes(request, meta_title):
+def fact_detailes(request, url):
 
     categoriesStatus = 404
     categoriesObject = categories.objects.none()
@@ -142,14 +189,36 @@ def fact_detailes(request, meta_title):
         categoriesObject = categories.objects.filter(active=True)
         categoriesStatus = 200
 
-    
+    category = {'en' : 'fact', 'fa' : 'فکت'}
+
+    blogObject = getBlogObjectByUrl(url)
+    blogMetaObject = getBlogMeta(blogObject)
+
+    thisCategoryObjects = getCategoryObjects(category['fa'])
+
+    pervBlog = getBlogObjectById(blogObject.id - 1, thisCategoryObjects)
+    nextBlog = getBlogObjectById(blogObject.id + 1, thisCategoryObjects)
+
+    blogsObjects = getBlogs(3, 'popular', blogObject, thisCategoryObjects)
+
+    popularTags = blogTags.getPopularTags(limit=10)
+
+    blogCommentObject = getBlogCommentsWithReplies(blogObject)
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
-        'categories' : categoriesObject
+        'categories' : categoriesObject,
+        'category' : category,
+        'blog' : blogObject,
+        'blogMeta' : blogMetaObject,
+        'blogsObjects' : blogsObjects,
+        'popularTags' : popularTags,
+        'pervBlog' : pervBlog,
+        'nextBlog' : nextBlog,
+        'comments' : blogCommentObject,
     }
 
-    return render(request, 'fact/fact_detailes.html', contexts)
+    return render(request, 'arrowpad/blog/fact/fact_detailes.html', contexts)
 
 def microscope(request):
 
@@ -160,19 +229,29 @@ def microscope(request):
         categoriesStatus = 200
 
     category = {'en' : 'microscope', 'fa' : 'میکروسکوپ'}
-    print(category['en'])
-    blogObjects = getBlogObjectByUrls(category)
+    
+    blogObjects = getBlogObjects(category)
+
+    thisCategoryObjects = getCategoryObjects(category['fa'])
+
+    newBlogsObjects = getBlogs(3, 'popular', thisCategoryObjects)
+
+    popularTags = blogTags.getPopularTags(limit=10)
+
+    paginatedBlogObject = paginate(blogObjects, 5, request )
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
         'category':category,
-        'blogs' : blogObjects
+        'blogs' : paginatedBlogObject,
+        'newBlogs' : newBlogsObjects,
+        'popularTags' : popularTags,
     }
 
-    return render(request, 'microscope/microscope.html', contexts)
+    return render(request, 'arrowpad/blog/microscope/microscope.html', contexts)
 
-def microscope_detailes(request, meta_title):
+def microscope_detailes(request, url):
 
     categoriesStatus = 404
     categoriesObject = categories.objects.none()
@@ -180,11 +259,33 @@ def microscope_detailes(request, meta_title):
         categoriesObject = categories.objects.filter(active=True)
         categoriesStatus = 200
 
-    
+    category = {'en' : 'microscope', 'fa' : 'میکروسکوپ'}
+
+    blogObject = getBlogObjectByUrl(url)
+    blogMetaObject = getBlogMeta(blogObject)
+
+    thisCategoryObjects = getCategoryObjects(category['fa'])
+
+    pervBlog = getBlogObjectById(blogObject.id - 1, thisCategoryObjects)
+    nextBlog = getBlogObjectById(blogObject.id + 1, thisCategoryObjects)
+
+    blogsObjects = getBlogs(3, 'popular', blogObject, thisCategoryObjects)
+
+    popularTags = blogTags.getPopularTags(limit=10)
+
+    blogCommentObject = getBlogCommentsWithReplies(blogObject)
 
     contexts = {
         'categoriesStatus' : categoriesStatus,
-        'categories' : categoriesObject
+        'categories' : categoriesObject,
+        'category' : category,
+        'blog' : blogObject,
+        'blogMeta' : blogMetaObject,
+        'blogsObjects' : blogsObjects,
+        'popularTags' : popularTags,
+        'pervBlog' : pervBlog,
+        'nextBlog' : nextBlog,
+        'comments' : blogCommentObject,
     }
 
-    return render(request, 'microscope/microscope_detailes.html', contexts)
+    return render(request, 'arrowpad/blog/microscope/microscope_detailes.html', contexts)
