@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import ajaxdef as ajax
 
 urlpatterns = [
     path("kiosk/", views.kiosk, name="kiosk"),
@@ -10,5 +11,8 @@ urlpatterns = [
     path("fact/<str:url>", views.fact_detailes, name="fact_detailes"),
     path("microscope/", views.microscope, name="microscope"),
     path("microscope/<str:url>", views.microscope_detailes, name="microscope_detailes"),
+
+
+    path("jx/add_comment/", ajax.addComment)
 
 ]

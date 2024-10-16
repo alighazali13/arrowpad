@@ -201,12 +201,8 @@
                                         <label>نظر</label>
                                         <textarea name="comment" id="comment" cols="45" placeholder="نظر شما ..." rows="5" maxlength="65525" required="required"></textarea>
                                     </p>
-                                    <!-- <p class="comment-form-cookies-consent">
-                                        <input type="checkbox" value="yes" name="wp-comment-cookies-consent" id="wp-comment-cookies-consent">
-                                        <label for="wp-comment-cookies-consent">نام ، ایمیل و وب سایت من را برای دفعه بعدی که نظر می دهم در این مرورگر ذخیره کنید.</label>
-                                    </p> -->
                                     <p class="form-submit">
-                                        <input type="submit" name="submit" id="submit" class="submit" value="ارسال نظر">
+                                        <input type="button" onclick="addComment('{{blog.url}}')" class="submit" value="ارسال نظر">
                                     </p>
                                 </form>
                             </div>
@@ -301,6 +297,6 @@
 {% endblock links %}
 
 {% block scripts %}
-
+    <script src="{% static 'arrowpad/js/ajax/comment.js' %}"></script>
 {% endblock scripts %}
         
