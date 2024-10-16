@@ -12,7 +12,7 @@ def getBlogObjects(category):
     if categories.objects.filter(en_name=category['en'], active=True).exists():
         categoryObject = categories.objects.get(en_name=category['en'], active=True)
         if blog.objects.filter(categories=categoryObject, active=True).exists():
-            blogObjects = blog.objects.filter(categories=categoryObject, active=True)
+            blogObjects = blog.objects.filter(categories=categoryObject, active=True).order_by('-id')
 
     return blogObjects
 
@@ -92,7 +92,7 @@ def getBlogs(num, types=None, currentBlog = None, categoryObject = None):
                 else:
                     blogsObjects = blog.objects.filter(active=True, categories=categoryObject).exclude(id=currentBlog.id).order_by('-totalView')[:num]
 
-
+    print(categoryObject)
 
     return blogsObjects
 

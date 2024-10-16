@@ -22,7 +22,7 @@ def kiosk(request):
 
     thisCategoryObjects = getCategoryObjects(category['fa'])
 
-    newBlogsObjects = getBlogs(3, 'popular', thisCategoryObjects)
+    newBlogsObjects = getBlogs(3, 'popular', None, thisCategoryObjects)
 
     popularTags = blogTags.getPopularTags(limit=10)
 
@@ -93,7 +93,7 @@ def souls(request):
 
     thisCategoryObjects = getCategoryObjects(category['fa'])
 
-    newBlogsObjects = getBlogs(3, 'popular', thisCategoryObjects)
+    newBlogsObjects = getBlogs(3, 'popular', None, thisCategoryObjects)
 
     popularTags = blogTags.getPopularTags(limit=10)
 
@@ -164,7 +164,7 @@ def fact(request):
 
     thisCategoryObjects = getCategoryObjects(category['fa'])
 
-    newBlogsObjects = getBlogs(3, 'popular', thisCategoryObjects)
+    newBlogsObjects = getBlogs(3, 'popular', None, thisCategoryObjects)
 
     popularTags = blogTags.getPopularTags(limit=10)
 
@@ -234,7 +234,7 @@ def microscope(request):
 
     thisCategoryObjects = getCategoryObjects(category['fa'])
 
-    newBlogsObjects = getBlogs(3, 'popular', thisCategoryObjects)
+    newBlogsObjects = getBlogs(3, 'popular', None, thisCategoryObjects)
 
     popularTags = blogTags.getPopularTags(limit=10)
 
