@@ -84,7 +84,7 @@
                                     </a>
                                     <div class="info">
                                         <span>{{blog.publishedAt|jdatetimeFormat}}</span>
-                                        <h4 class="title usmall"><a href="{% url 'souls_detailes' blog.url %}   "> {{blog.title}} </a></h4>
+                                        <h4 class="title usmall"><a href="{% url category.en|add:'_detailes' blog.url %}"> {{blog.title}} </a></h4>
                                     </div>
 
                                     <div class="clear"></div>
