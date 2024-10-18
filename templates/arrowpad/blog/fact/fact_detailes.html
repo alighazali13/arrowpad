@@ -279,22 +279,23 @@
 
 
 
-{% block meta_title %} {{blogMeta.metaTitle}} {% endblock meta_title %}
-{% block meta_keyword %} {{blogMeta.metaKeywords}} {% endblock meta_keyword %}
-{% block meta_tag %} {{blogMeta.metaTags}} {% endblock meta_tag %}
-{% block meta_description %} {{blogMeta.metaDescription}} {% endblock meta_description %}
-{% block meta_author %} {{blog.author}} {% endblock meta_author %}
+{% block meta_title %}{{blogMeta.metaTitle}}{% endblock meta_title %}
+{% block meta_keyword %}{{blogMeta.metaKeywords}}{% endblock meta_keyword %}
+{% block meta_tag %}{{blogMeta.metaTags}}{% endblock meta_tag %}
+{% block meta_description %}{{blogMeta.metaDescription}}{% endblock meta_description %}
+{% block meta_author %}{{blog.author}}{% endblock meta_author %}
 
-{% block og_title %} {{blogMeta.metaTitle}} {% endblock og_title %}
-{% block og_description %} {{blogMeta.metaDescription}} {% endblock og_description %}
-{% block og_img %} /media/{{blog.poster}} {% endblock og_img %}
-{% block og_url %} {{request.build_absolute_uri}} {% endblock og_url %}
-{% block og_type %} article {% endblock og_type %}
+{% block og_title %}{{blogMeta.metaTitle}} {% endblock og_title %}
+{% block og_description %}{{blogMeta.metaDescription}}{% endblock og_description %}
+{% block og_img %}/media/{{blog.poster}}{% endblock og_img %}
+{% block og_url %}{{request.build_absolute_uri}}{% endblock og_url %}
+{% block og_type %}article{% endblock og_type %}
 
-{% block twitter_title %} {{blogMeta.metaTitle}} {% endblock twitter_title %}
-{% block twitter_description %} {{blogMeta.metaDescription}} {% endblock twitter_description %}
-{% block twitter_img %} /media/{{blog.poster}} {% endblock twitter_img %}
-{% block twitter_url %} {{request.build_absolute_uri}} {% endblock twitter_url %}
+{% block twitter_title %}{{blogMeta.metaTitle}}{% endblock twitter_title %}
+{% block twitter_description %}{{blogMeta.metaDescription}}{% endblock twitter_description %}
+{% block twitter_img %}/media/{{blog.poster}}{% endblock twitter_img %}
+{% block twitter_url %}{{request.build_absolute_uri}}{% endblock twitter_url %}
+
 
 {% block links %}
 

@@ -125,22 +125,22 @@
 
 
 
-{% block meta_title %} {{categoryMeta.metaTitle}} {% endblock meta_title %}
-{% block meta_keyword %} {{categoryMeta.metaKeywords}} {% endblock meta_keyword %}
-{% block meta_tag %} {{categoryMeta.metaTags}} {% endblock meta_tag %}
-{% block meta_description %} {{categoryMeta.metaDescription}} {% endblock meta_description %}
-{% block meta_author %} arrowpad {% endblock meta_author %}
+{% block meta_title %}{{categoryMeta.metaTitle}}{% endblock meta_title %}
+{% block meta_keyword %}{{categoryMeta.metaKeywords}}{% endblock meta_keyword %}
+{% block meta_tag %}{{categoryMeta.metaTags}}{% endblock meta_tag %}
+{% block meta_description %}{{categoryMeta.metaDescription}}{% endblock meta_description %}
+{% block meta_author %}arrowpad{% endblock meta_author %}
 
-{% block og_title %} {{categoryMeta.metaTitle}} {% endblock og_title %}
-{% block og_description %} {{categoryMeta.metaDescription}} {% endblock og_description %}
-{% block og_img %} /media/{{category.vector}} {% endblock og_img %}
-{% block og_url %} {{request.build_absolute_uri}} {% endblock og_url %}
-{% block og_type %} articles {% endblock og_type %}
+{% block og_title %}{{categoryMeta.metaTitle}}{% endblock og_title %}
+{% block og_description %}{{categoryMeta.metaDescription}}{% endblock og_description %}
+{% block og_img %}/media/{{category.vector}}{% endblock og_img %}
+{% block og_url %}{{request.build_absolute_uri}}{% endblock og_url %}
+{% block og_type %}articles{% endblock og_type %}
 
-{% block twitter_title %} {{categoryMeta.metaTitle}} {% endblock twitter_title %}
-{% block twitter_description %} {{categoryMeta.metaDescription}} {% endblock twitter_description %}
-{% block twitter_img %} /media/{{category.poster}} {% endblock twitter_img %}
-{% block twitter_url %} {{request.build_absolute_uri}} {% endblock twitter_url %}
+{% block twitter_title %}{{categoryMeta.metaTitle}}{% endblock twitter_title %}
+{% block twitter_description %}{{categoryMeta.metaDescription}}{% endblock twitter_description %}
+{% block twitter_img %}/media/{{category.poster}}{% endblock twitter_img %}
+{% block twitter_url %}{{request.build_absolute_uri}}{% endblock twitter_url %}
 
 {% block links %}
 
