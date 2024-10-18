@@ -126,15 +126,14 @@
 
 
 
-{% block meta_title %}
-    اروپد | کیوسک
-{% endblock meta_title %}
+{% block meta_title %} {{categoryMeta.metaTitle}} {% endblock meta_title %}
 
-{% block meta_keyword %} arrowpad, اروپد - سفری به دنیای گیم به سبک ما {% endblock meta_keyword %}
+{% block meta_keyword %} {{categoryMeta.metaKeywords}} {% endblock meta_keyword %}
 
-{% block meta_tag %}{% endblock meta_tag %}
+{% block meta_tag %} {{categoryMeta.metaTags}} {% endblock meta_tag %}
 
-{% block meta_description %} اروپد | سفری به دنیای گیم به سبک ما {% endblock meta_description %}
+{% block meta_description %} {{categoryMeta.metaDescription}} {% endblock meta_description %}
+
 {% block meta_author %} arrowpad {% endblock meta_author %}
 
 {% block links %}

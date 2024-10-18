@@ -3,7 +3,7 @@ from django.db.models import Prefetch
 import jdatetime
 
 from blog.models import blog
-from .models import categories
+from .models import categories, categoryMeta
 
 
 
@@ -38,9 +38,19 @@ def getCategoriesWithBlogs(categoriesObject, num):
       
       return blogs_by_category
 
-def getCategoryObjects(title):
+def getCategoryObject(title):
+      try : 
+            return categories.objects.get(title=title)
+      except categories.DoesNotExist:
+            return None
 
-      return categories.objects.get(title=title)
       
+
+
+def getCategoryMetaObject(categoryObject):
+      try : 
+            return categoryMeta.objects.get(category=categoryObject)
+      except categoryMeta.DoesNotExist:
+            return None
 
       

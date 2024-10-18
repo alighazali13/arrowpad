@@ -287,13 +287,13 @@
 
 {% block og_title %} {{blogMeta.metaTitle}} {% endblock og_title %}
 {% block og_description %} {{blogMeta.metaDescription}} {% endblock og_description %}
-{% block og_img %} /media/{{blog.posterWebp}} {% endblock og_img %}
+{% block og_img %} /media/{{blog.poster}} {% endblock og_img %}
 {% block og_url %} {{request.build_absolute_uri}} {% endblock og_url %}
 {% block og_type %} article {% endblock og_type %}
 
 {% block twitter_title %} {{blogMeta.metaTitle}} {% endblock twitter_title %}
 {% block twitter_description %} {{blogMeta.metaDescription}} {% endblock twitter_description %}
-{% block twitter_img %} /media/{{blog.posterWebp}} {% endblock twitter_img %}
+{% block twitter_img %} /media/{{blog.poster}} {% endblock twitter_img %}
 {% block twitter_url %} {{request.build_absolute_uri}} {% endblock twitter_url %}
 
 {% block links %}

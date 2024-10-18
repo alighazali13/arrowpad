@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .functions import getBlogObjects, getBlogObjectByUrl, getBlogObjectById, getBlogMeta, getBlogs, getBlogCommentsWithReplies
-from arrowpad.functions import paginate, getCategoryObjects
+from arrowpad.functions import paginate, getCategoryObject, getCategoryMetaObject
 
 from arrowpad.models import categories
 from .models import blog, blogTags
@@ -20,7 +20,8 @@ def kiosk(request):
 
     blogObjects = getBlogObjects(category)
 
-    thisCategoryObjects = getCategoryObjects(category['fa'])
+    thisCategoryObjects = getCategoryObject(category['fa'])
+    thisCategoryMetaObjects = getCategoryMetaObject(thisCategoryObjects)
 
     newBlogsObjects = getBlogs(3, 'popular', None, thisCategoryObjects)
 
@@ -35,6 +36,7 @@ def kiosk(request):
         'blogs' : paginatedBlogObject,
         'newBlogs' : newBlogsObjects,
         'popularTags' : popularTags,
+        'categoryMeta' : thisCategoryMetaObjects,
     }
 
     return render(request, 'arrowpad/blog/kiosk/kiosk.html', contexts)
@@ -52,7 +54,7 @@ def kiosk_detailes(request, url):
     blogObject = getBlogObjectByUrl(url)
     blogMetaObject = getBlogMeta(blogObject)
 
-    thisCategoryObjects = getCategoryObjects(category['fa'])
+    thisCategoryObjects = getCategoryObject(category['fa'])
 
     pervBlog = getBlogObjectById(blogObject.id - 1, thisCategoryObjects)
     nextBlog = getBlogObjectById(blogObject.id + 1, thisCategoryObjects)
@@ -91,7 +93,8 @@ def souls(request):
     
     blogObjects = getBlogObjects(category)
 
-    thisCategoryObjects = getCategoryObjects(category['fa'])
+    thisCategoryObjects = getCategoryObject(category['fa'])
+    thisCategoryMetaObjects = getCategoryMetaObject(thisCategoryObjects)
 
     newBlogsObjects = getBlogs(3, 'popular', None, thisCategoryObjects)
 
@@ -106,6 +109,7 @@ def souls(request):
         'blogs' : paginatedBlogObject,
         'newBlogs' : newBlogsObjects,
         'popularTags' : popularTags,
+        'categoryMeta' : thisCategoryMetaObjects,
     }
 
     return render(request, 'arrowpad/blog/souls/souls.html', contexts)
@@ -123,7 +127,7 @@ def souls_detailes(request, url):
     blogObject = getBlogObjectByUrl(url)
     blogMetaObject = getBlogMeta(blogObject)
 
-    thisCategoryObjects = getCategoryObjects(category['fa'])
+    thisCategoryObjects = getCategoryObject(category['fa'])
 
     pervBlog = getBlogObjectById(blogObject.id - 1, thisCategoryObjects)
     nextBlog = getBlogObjectById(blogObject.id + 1, thisCategoryObjects)
@@ -162,7 +166,8 @@ def fact(request):
     
     blogObjects = getBlogObjects(category)
 
-    thisCategoryObjects = getCategoryObjects(category['fa'])
+    thisCategoryObjects = getCategoryObject(category['fa'])
+    thisCategoryMetaObjects = getCategoryMetaObject(thisCategoryObjects)
 
     newBlogsObjects = getBlogs(3, 'popular', None, thisCategoryObjects)
 
@@ -177,6 +182,7 @@ def fact(request):
         'blogs' : paginatedBlogObject,
         'newBlogs' : newBlogsObjects,
         'popularTags' : popularTags,
+        'categoryMeta' : thisCategoryMetaObjects,
     }
 
     return render(request, 'arrowpad/blog/fact/fact.html', contexts)
@@ -194,7 +200,7 @@ def fact_detailes(request, url):
     blogObject = getBlogObjectByUrl(url)
     blogMetaObject = getBlogMeta(blogObject)
 
-    thisCategoryObjects = getCategoryObjects(category['fa'])
+    thisCategoryObjects = getCategoryObject(category['fa'])
 
     pervBlog = getBlogObjectById(blogObject.id - 1, thisCategoryObjects)
     nextBlog = getBlogObjectById(blogObject.id + 1, thisCategoryObjects)
@@ -232,7 +238,8 @@ def microscope(request):
     
     blogObjects = getBlogObjects(category)
 
-    thisCategoryObjects = getCategoryObjects(category['fa'])
+    thisCategoryObjects = getCategoryObject(category['fa'])
+    thisCategoryMetaObjects = getCategoryMetaObject(thisCategoryObjects)
 
     newBlogsObjects = getBlogs(3, 'popular', None, thisCategoryObjects)
 
@@ -247,6 +254,7 @@ def microscope(request):
         'blogs' : paginatedBlogObject,
         'newBlogs' : newBlogsObjects,
         'popularTags' : popularTags,
+        'categoryMeta' : thisCategoryMetaObjects,
     }
 
     return render(request, 'arrowpad/blog/microscope/microscope.html', contexts)
@@ -264,7 +272,7 @@ def microscope_detailes(request, url):
     blogObject = getBlogObjectByUrl(url)
     blogMetaObject = getBlogMeta(blogObject)
 
-    thisCategoryObjects = getCategoryObjects(category['fa'])
+    thisCategoryObjects = getCategoryObject(category['fa'])
 
     pervBlog = getBlogObjectById(blogObject.id - 1, thisCategoryObjects)
     nextBlog = getBlogObjectById(blogObject.id + 1, thisCategoryObjects)
