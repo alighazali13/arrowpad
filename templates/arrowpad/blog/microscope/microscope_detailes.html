@@ -38,7 +38,7 @@
                                     <li>
                                         <i class='bx bx-folder-open'></i>
                                         <span>دسته</span>
-                                        <a href="#"> {{blog.categories.title}} </a>
+                                        <a href="{% url category.en %}"> {{blog.categories.title}} </a>
                                     </li>
                                     <li>
                                         <i class='bx bx-calendar'></i>
@@ -232,7 +232,7 @@
                             <h3 class="widget-title"> جدیدترین {{category.fa}} </h3>
                             {% for blog in blogsObjects %}
                                 <article class="item">
-                                    <a href="#" class="thumb">
+                                    <a href="{% url category.en|add:'_detailes' blog.url %}" class="thumb">
                                         <span class="fullimage cover bg1" role="img"><img src="/media/{{blog.posterWebp}}" alt=""></span>
                                     </a>
                                     <div class="info">
