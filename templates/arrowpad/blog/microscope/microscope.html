@@ -7,7 +7,7 @@
     <section class="page-title-area page-title-bg1">
         <div class="container">
             <div class="page-title-content">
-                <h1 title=" {{category.fa}} "> {{category.fa}} </h1>
+                <h1 title=" {{category.title}} "> {{category.title}} </h1>
             </div>
         </div>
     </section>
@@ -69,14 +69,14 @@
                             <form class="search-form">
                                 <label>
                                     <span class="screen-reader-text">جستجو:</span>
-                                    <input type="search" class="search-field" placeholder=" جستجو در {{category.fa}} ... ">
+                                    <input type="search" class="search-field" placeholder=" جستجو در {{category.title}} ... ">
                                 </label>
                                 <button type="submit"><i class="bx bx-search-alt"></i></button>
                             </form>
                         </section>
 
                         <section class="widget widget_zelda_posts_thumb">
-                            <h3 class="widget-title"> جدیدترین {{category.fa}} </h3>
+                            <h3 class="widget-title"> جدیدترین {{category.title}} </h3>
                             {% for blog in newBlogs %}
                                 <article class="item">
                                     <a href="{% url 'microscope_detailes' blog.url %}" class="thumb">
@@ -84,7 +84,7 @@
                                     </a>
                                     <div class="info">
                                         <span>{{blog.publishedAt|jdatetimeFormat}}</span>
-                                        <h4 class="title usmall"><a href="{% url category.en|add:'_detailes' blog.url %}"> {{blog.title}} </a></h4>
+                                        <h4 class="title usmall"><a href="{% url category.en_name|add:'_detailes' blog.url %}"> {{blog.title}} </a></h4>
                                     </div>
 
                                     <div class="clear"></div>
@@ -127,14 +127,21 @@
 
 
 {% block meta_title %} {{categoryMeta.metaTitle}} {% endblock meta_title %}
-
 {% block meta_keyword %} {{categoryMeta.metaKeywords}} {% endblock meta_keyword %}
-
 {% block meta_tag %} {{categoryMeta.metaTags}} {% endblock meta_tag %}
-
 {% block meta_description %} {{categoryMeta.metaDescription}} {% endblock meta_description %}
-
 {% block meta_author %} arrowpad {% endblock meta_author %}
+
+{% block og_title %} {{categoryMeta.metaTitle}} {% endblock og_title %}
+{% block og_description %} {{categoryMeta.metaDescription}} {% endblock og_description %}
+{% block og_img %} /media/{{category.vector}} {% endblock og_img %}
+{% block og_url %} {{request.build_absolute_uri}} {% endblock og_url %}
+{% block og_type %} articles {% endblock og_type %}
+
+{% block twitter_title %} {{categoryMeta.metaTitle}} {% endblock twitter_title %}
+{% block twitter_description %} {{categoryMeta.metaDescription}} {% endblock twitter_description %}
+{% block twitter_img %} /media/{{category.poster}} {% endblock twitter_img %}
+{% block twitter_url %} {{request.build_absolute_uri}} {% endblock twitter_url %}
 
 {% block links %}
 

@@ -32,7 +32,7 @@ def kiosk(request):
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
-        'category':category,
+        'category':thisCategoryObjects,
         'blogs' : paginatedBlogObject,
         'newBlogs' : newBlogsObjects,
         'popularTags' : popularTags,
@@ -105,7 +105,7 @@ def souls(request):
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
-        'category':category,
+        'category':thisCategoryObjects,
         'blogs' : paginatedBlogObject,
         'newBlogs' : newBlogsObjects,
         'popularTags' : popularTags,
@@ -178,7 +178,7 @@ def fact(request):
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
-        'category':category,
+        'category':thisCategoryObjects,
         'blogs' : paginatedBlogObject,
         'newBlogs' : newBlogsObjects,
         'popularTags' : popularTags,
@@ -250,7 +250,7 @@ def microscope(request):
     contexts = {
         'categoriesStatus' : categoriesStatus,
         'categories' : categoriesObject,
-        'category':category,
+        'category':thisCategoryObjects,
         'blogs' : paginatedBlogObject,
         'newBlogs' : newBlogsObjects,
         'popularTags' : popularTags,
