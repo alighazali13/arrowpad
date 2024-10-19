@@ -63,9 +63,9 @@ Default CSS
   --fontFamily: 'Vazirmatn RD FD', sans-serif;
   --fontFamily2: Vazirmatn RD FD;
   --fontFamily3: 'Vazirmatn RD FD', sans-serif;
-  --mainColor: #fc0820;
+  --mainColor: #076aff;
   --whiteColor: #ffffff;
-  --blackColor: #0c0305;
+  --blackColor: #020008;
   --fontSize: 18px;
   --transition: .5s;
 
@@ -1229,7 +1229,7 @@ Main Banner Area CSS
   position: relative;
   z-index: 1;
   padding-top: 150px;
-  background-image: url(../img/main-banner-bg1.jpg);
+  background-image: url(../img/wallpaper-mania.com_High_resolution_wallpaper_background_ID_77700321874.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2403,6 +2403,7 @@ Blog Area CSS
 
 .single-blog-post-box .post-content {
   padding: 25px;
+  background-color: #20345e;
 }
 
 .single-blog-post-box .post-content .post-meta {
@@ -3260,7 +3261,7 @@ blockquote::after, .blockquote::after {
 .comments-area .comment-respond input[type="date"], .comments-area .comment-respond input[type="time"], .comments-area .comment-respond input[type="datetime-local"], .comments-area .comment-respond input[type="week"], .comments-area .comment-respond input[type="month"], .comments-area .comment-respond input[type="text"], .comments-area .comment-respond input[type="email"], .comments-area .comment-respond input[type="url"], .comments-area .comment-respond input[type="password"], .comments-area .comment-respond input[type="search"], .comments-area .comment-respond input[type="tel"], .comments-area .comment-respond input[type="number"], .comments-area .comment-respond textarea {
   display: block;
   width: 100%;
-  background-color: #22152c;
+  background-color: #20345e;
   border: none;
   padding: 1px 0 0 15px;
   height: 50px;
@@ -3390,7 +3391,7 @@ Live Stream Area CSS
 .live-stream-area {
   position: relative;
   z-index: 1;
-  background-image: url(../img/awards-bg.jpg);
+  background-image: url(../img/background-1231.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3659,7 +3660,7 @@ Awards Area CSS
 .awards-area {
   position: relative;
   z-index: 1;
-  background-image: url(../img/awards-bg.jpg);
+  background-image: background-image: url(../img/background-1231.png);;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6097,7 +6098,7 @@ Partner Area CSS
 }
 
 .partner-area.bg-image {
-  background-image: url(../img/awards-bg.jpg);
+  background-image: background-image: url(../img/background-1231.png);;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6423,7 +6424,7 @@ Subscribe Area CSS
   text-align: center;
   padding-left: 100px;
   padding-right: 100px;
-  background-image: url(../img/subscribe-bg.jpg);
+  background-image: url(../img/gaming_newsletter.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6470,7 +6471,7 @@ Subscribe Area CSS
   display: block;
   width: 100%;
   height: 50px;
-  background-color: #1a0c09;
+  background-color: #20345e;
   padding: 5px 0 0 58px;
   -webkit-transition: var(--transition);
   transition: var(--transition);
@@ -6758,7 +6759,7 @@ Page Title Area CSS
 }
 
 .page-title-bg1 {
-  background-image: url(../img/main-banner-bg1.jpg);
+  background-image: url(../img/wallpaper-mania.com_High_resolution_wallpaper_background_ID_77700321874.jpg);
 }
 
 .page-title-content img {
@@ -6973,7 +6974,7 @@ Coming Soon Area CSS
   position: relative;
   z-index: 1;
   background: #f6f7fb;
-  background-image: url(../img/main-banner-bg1.jpg);
+  background-image: url(../img/wallpaper-mania.com_High_resolution_wallpaper_background_ID_77700321874.jpg);
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -7397,7 +7398,7 @@ Widget Sidebar CSS
 .widget-area .widget_search form .search-field {
   height: 50px;
   color: var(--whiteColor);
-  background-color: #22152c;
+  background-color: #20345e;
   display: block;
   width: 100%;
   border-radius: 5px;
@@ -8875,8 +8876,8 @@ Footer Area CSS
 }
 
 .footer-style-two {
-  background-color: #1b060a;
-  padding-top: 100px;
+  background-color: var(--blackColor);
+  padding-top: 20px;
   position: relative;
   z-index: 1;
 }
