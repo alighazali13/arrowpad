@@ -1484,7 +1484,7 @@ Main Banner Area CSS
   width: 45px;
   height: 4px;
   margin: 0 7px;
-  background: #421c20;
+  background: #20345e;
   -webkit-transition: var(--transition);
   transition: var(--transition);
   border-radius: 3px;
@@ -8932,7 +8932,7 @@ Footer Area CSS
   height: 34px;
   text-align: center;
   color: var(--whiteColor);
-  background-color: #0c0305;
+  background-color: #20345e;
   font-size: 20px;
   position: relative;
   border-radius: 2px;
@@ -9023,7 +9023,7 @@ Footer Area CSS
 
 .footer-bottom-area {
   margin-top: 70px;
-  border-top: 1px solid #220f13;
+  border-top: 1px solid var(--mainColor);
   padding-top: 25px;
   padding-bottom: 25px;
 }
