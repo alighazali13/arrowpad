@@ -1,0 +1,159 @@
+{% extends 'adminstrator/masterpage.html' %}
+{% load static %}
+{% load mathfilters %}
+
+
+
+{% block content %}
+
+
+
+
+<div id="content" class="main-content">
+    <div class="layout-px-spacing">
+
+        <div class="row layout-top-spacing">
+        
+            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                <div class="widget-content widget-content-area br-6">
+                    <div class="row">
+                        <div id="flFormsGrid" class="col-lg-12 layout-spacing">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4> فرم ساخت {{category.title}} جدید </h4>
+                                        </div>                                                                        
+                                    </div>
+                                </div>
+                                <div class="widget-content widget-content-area">
+                                    <form enctype="multipart/form-data" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-3">
+                                                <label for="big_logo"> عنوان </label>
+                                                {{blogForm.title}}
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="sm_logo"> آدرس </label>
+                                                {{blogForm.url}}
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="sm_logo"> دسته بندی </label>
+                                                <select name="genres" class="selectpicker form-control" required data-size="5" title=" انتخاب نشده است " data-live-search="true">
+                                                    {% for category in categories %}
+                                                        <option value="{{category.id}}">{{category.title}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="sm_logo"> آدرس ویدیو (می تواند خالی باشد). </label>
+                                                {{blogVideoForm.url}}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-6">
+                                                <label for="big_logo"> توضیحات کوتاه </label>
+                                                {{blogForm.brief}}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="big_logo"> محتوا </label>
+                                                {{blogForm.media}}
+                                                {{blogForm.content}}
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-6">
+                                                <label for="fa_name"> عکس برای اسلایدر(می تواند خالی باشد). </label>
+                                                <input type="file" id="productImages" name="productImages" class="dropify" data-max-file-size="2M" data-default-file="{% static 'dashboard/assets/img/2849110.png' %}" multiple />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="fa_name"> پوستر  </label>
+                                                {{blogForm.poster}}
+                                            </div>
+                                        </div>
+                                        <div class="widget-header">
+                                            <div class="row">
+                                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                    <h4> متا تگ ها </h4>
+                                                </div>                                                                        
+                                            </div>
+                                        </div>
+                                        <div class="widget-content widget-content-area">
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-4">
+                                                    <label for="big_logo"> متا تایتل </label>
+                                                    {{blogMetaForm.metaTitle}}
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="sm_logo"> متا تگ (با - از هم جدا شوند). </label>
+                                                    {{blogMetaForm.metaTags}}
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="sm_logo"> متا کی ورد (با - از هم جدا شوند). </label>
+                                                    {{blogMetaForm.metaKeywords}}
+                                                </div>
+                                            </div>
+                                            <div class="form-row mb-4">
+                                                <div class="form-group col-md-12">
+                                                    <label for="big_logo"> متا دسکریپشن </label>
+                                                    {{blogMetaForm.metaDescription}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+
+{% endblock content %}
+
+{% block meta_title %}
+    اضافه کردن ادمین
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/dropify/dropify.min.css'%}"></script>
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/assets/css/users/account-setting.css'%}"></script>
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/bootstrap-select/bootstrap-select.min.css'%}"></script>
+<link type="text/css" rel="stylesheet" href="{% static 'dashboard/plugins/file-upload/file-upload-with-preview.min.css'%}"></script>
+{% endblock links %}
+
+{% block scripts %}
+<script src="{% static 'dashboard/plugins/dropify/dropify.min.js'%}"></script>
+<script src="{% static 'dashboard/plugins/blockui/jquery.blockUI.min.js'%}"></script>
+<script src="{% static 'dashboard/assets/js/users/account-settings.js'%}"></script>
+<script src="{% static 'dashboard/assets/js/custom/field_mng.js'%}"></script>
+<script src="{% static 'CKEditor/ckeditor.js'%}"></script>
+<script src="{% static 'dashboard/plugins/file-upload/file-upload-with-preview.min.js'%}"></script>
+<script>
+    CKEDITOR.replace('ck')
+    var secondUpload = new FileUploadWithPreview('mySecondImage')
+    document.getElementById('id_image').setAttribute("multiple", "");
+</script>
+
+<script src="{% static 'dashboard/plugins/bootstrap-select/bootstrap-select.min.js'%}"></script>
+
+
+{% endblock scripts %}

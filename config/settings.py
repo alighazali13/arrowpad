@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ckeditor',
+    'django_jalali',
+    'mathfilters',
 
     'arrowpad.apps.ArrowpadConfig',
     'blog.apps.BlogConfig',
+    'adminstrator.apps.AdminstratorConfig',
 ]
 
 

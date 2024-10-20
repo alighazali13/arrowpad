@@ -1,12 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext as _
 import uuid, os, jdatetime, re
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from PIL import Image
 from django_jalali.db import models as jmodels
 from ckeditor.fields import RichTextField
-from ckeditor_uploader.fields import RichTextUploadingField
 
 from arrowpad.models import categories
 

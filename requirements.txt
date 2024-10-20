@@ -3,6 +3,7 @@ Django==5.1.1
 django-ckeditor-with-toc==1.0.1
 django-jalali==7.1.0
 django-js-asset==2.2.0
+django-mathfilters==1.0.0
 django-social-share==2.3.0
 jalali_core==1.0.0
 jdatetime==5.0.0

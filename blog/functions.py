@@ -6,15 +6,7 @@ from arrowpad.models import categories
 
 
 def getBlogObjects(category):
-
-    categoryObject = categories.objects.none()
-    blogObjects = blog.objects.none()
-    if categories.objects.filter(en_name=category['en'], active=True).exists():
-        categoryObject = categories.objects.get(en_name=category['en'], active=True)
-        if blog.objects.filter(categories=categoryObject, active=True).exists():
-            blogObjects = blog.objects.filter(categories=categoryObject, active=True).order_by('-id')
-
-    return blogObjects
+    return blog.objects.filter(categories=category, active=True).order_by('-id')
 
 def getBlogObjectByUrl(url):
 
