@@ -1,6 +1,6 @@
 from django.db.models import Prefetch
 
-from .models import blog, blogMeta,  blogView, blogViewTypesChoices, blogComment, blogReplies
+from .models import blog, blogMeta,  blogView, blogVideo, blogViewTypesChoices, blogComment, blogReplies
 from arrowpad.models import categories
 
 
@@ -13,6 +13,14 @@ def getBlogObjectByUrl(url):
     blogObject = blog.objects.none()
     if blog.objects.filter(url=url, active=True).exists():
         blogObject = blog.objects.get(url=url, active=True)
+
+    return blogObject
+
+def getBlogObjectBySlug(slug):
+
+    blogObject = blog.objects.none()
+    if blog.objects.filter(slug=slug, active=True).exists():
+        blogObject = blog.objects.get(slug=slug, active=True)
 
     return blogObject
 
@@ -53,6 +61,20 @@ def getBlogMeta(blogObject):
     if blogMeta.objects.filter(blog = blogObject).exists():
         blogMetaObject = blogMeta.objects.get(blog = blogObject)
     return blogMetaObject
+
+# def getBlogSlides(blogObject):
+    
+#     blogSlidesObject = blogSlides.objects.none()
+#     if blogSlides.objects.filter(blog = blogObject).exists():
+#         blogSlidesObject = blogSlides.objects.filter(blog = blogObject)
+#     return blogSlidesObject
+
+def getblogVideo(blogObject):
+    
+    blogVideoObject = blogVideo.objects.none()
+    if blogVideo.objects.filter(blog = blogObject).exists():
+        blogVideoObject = blogVideo.objects.filter(blog = blogObject)
+    return blogVideoObject
 
 def getBlogs(num, types=None, currentBlog = None, categoryObject = None):
     

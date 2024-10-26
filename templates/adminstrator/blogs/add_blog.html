@@ -40,7 +40,7 @@
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="sm_logo"> دسته بندی </label>
-                                                <select name="genres" class="selectpicker form-control" required data-size="5" title=" انتخاب نشده است " data-live-search="true">
+                                                <select id="id_category" name="category" class="selectpicker form-control" required data-size="5" title=" انتخاب نشده است " data-live-search="true">
                                                     {% for category in categories %}
                                                         <option value="{{category.id}}">{{category.title}}</option>
                                                     {% endfor %}
@@ -48,7 +48,7 @@
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="sm_logo"> آدرس ویدیو (می تواند خالی باشد). </label>
-                                                {{blogVideoForm.url}}
+                                                {{blogVideoForm.urlVideo}}
                                             </div>
                                         </div>
 
@@ -68,11 +68,11 @@
                                         <div class="form-row mb-4">
                                             <div class="form-group col-md-6">
                                                 <label for="sliderImages"> عکس برای اسلایدر(می تواند خالی باشد). </label>
-                                                <input type="file" id="sliderImages" name="sliderImages" class="dropify" data-max-file-size="2M" data-default-file="{% static 'dashboard/assets/img/2849110.png' %}" multiple />
+                                                <input type="file" id="id_sliderImages" name="sliderImages" class="dropify" data-max-file-size="2M" data-default-file="{% static 'dashboard/assets/img/2849110.png' %}" multiple />
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="sliderImages"> پوستر </label>
-                                                <input type="file" id="sliderImages" name="sliderImages" class="dropify" data-max-file-size="2M" data-default-file="{% static 'dashboard/assets/img/2849110.png' %}"  />
+                                                <input type="file" id="id_poster" name="poster" class="dropify" data-max-file-size="2M" data-default-file="{% static 'dashboard/assets/img/2849110.png' %}"  />
                                             </div>
                                         </div>
                                         <div class="widget-header">
@@ -102,6 +102,12 @@
                                                     <label for="big_logo"> متا دسکریپشن </label>
                                                     {{blogMetaForm.metaDescription}}
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row mb-4 col-12">
+                                            <div class="form-group col-md-6 mb-4">
+                                                <button type="submit" name="addBlog_BTN" class="btn btn-primary mt-3" style="float: left;"> ثبت {{category.title}} جدید </button>
                                             </div>
                                         </div>
 
@@ -147,6 +153,7 @@
 <script src="{% static 'dashboard/assets/js/custom/field_mng.js'%}"></script>
 <script src="{% static 'CKEditor/ckeditor.js'%}"></script>
 <script src="{% static 'dashboard/plugins/file-upload/file-upload-with-preview.min.js'%}"></script>
+<script src="{% static 'dashboard/assets/js/ajax/addBlog.js'%}"></script>
 <script>
     CKEDITOR.replace('ck')
     var secondUpload = new FileUploadWithPreview('mySecondImage')

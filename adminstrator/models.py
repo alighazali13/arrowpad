@@ -9,17 +9,17 @@ class adminInformation(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=70)
-    displayName = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
+    displayName = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(max_length=100, unique=True)
     birthday_date = jmodels.jDateField(null=True, blank=True)
 
     def __str__(self) -> str:
-        return self.firstName + self.lastName
+        return self.firstName + ' ' + self.lastName
 
 class adminLogin(models.Model):
     adminInformation = models.ForeignKey(adminInformation, on_delete=models.CASCADE, related_name='adminLogin')
     password = models.CharField(max_length=255)
-    phoneNumber = models.CharField(max_length=13)
+    phoneNumber = models.CharField(max_length=13, unique=True)
     joinedAt = jmodels.jDateTimeField(default=jdatetime.datetime.now)
     updatedAt = jmodels.jDateTimeField(default=jdatetime.datetime.now)
     lastLogin = jmodels.jDateTimeField(default=jdatetime.datetime.now)

@@ -30,7 +30,7 @@
         
                                     <div class="post-content">
                                         <ul class="post-meta">
-                                            <li>توسط <a href="#"> {{blog.author}} </a></li>
+                                            <li>توسط <a href="#"> {{blog.author.displayName}} </a></li>
                                     <li>{{blog.publishedAt|jdatetimeFormat}}</li>
                                     <li><a href="{% url 'souls_detailes' blog.url %}">{{blog.categories.title}}</a></li>
                                 </ul>
@@ -109,7 +109,7 @@
                             <div class="tagcloud">
                                 
                                 {% for tag in popularTags %}
-                                    <a href="#"> {{tag.name}} <span class="tag-link-count"> ({{tag.view}})</span></a>
+                                    <a href="#"> {{tag.name}} <span class="tag-link-count"> ({{tag.usageCount}})</span></a>
                                 {% endfor %}
                                 
                             </div>

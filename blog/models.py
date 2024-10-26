@@ -5,6 +5,7 @@ from django_jalali.db import models as jmodels
 from ckeditor.fields import RichTextField
 
 from arrowpad.models import categories
+from adminstrator.models import adminLogin, adminInformation
 
 def blogPoster_path(instance, fileName):
     ext = os.path.splitext(fileName)[1].lower()
@@ -26,11 +27,11 @@ def blogPosterJpeg_path(instance, fileName):
 
 class blog(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
+    author = models.ForeignKey(adminInformation, on_delete=models.CASCADE, related_name='blogAuthor')
     title = models.CharField(max_length=255, unique=True)
     poster = models.ImageField(upload_to=blogPoster_path)
     posterWebp = models.ImageField(upload_to=blogPosterWebp_path)
     posterJpeg = models.ImageField(upload_to=blogPosterJpeg_path)
-    author = models.CharField(max_length=255)
     categories = models.ForeignKey(categories, on_delete=models.CASCADE, related_name='blog')
     brief = models.TextField()
     content = RichTextField()
@@ -51,7 +52,7 @@ class blogTags(models.Model):
     slug = models.SlugField(default=uuid.uuid4)
     name = models.CharField(max_length=255, unique=True)
     url = models.CharField(max_length=255, unique=True)
-    view = models.IntegerField(default=0)
+    usageCount = models.IntegerField(default=1)
 
     def __str__(self) -> str:
         return self.name
@@ -59,9 +60,9 @@ class blogTags(models.Model):
     @classmethod
     def getPopularTags(cls, limit=10):
         """
-        Return the top 'limit' most viewed blog tags.
+        Return the top 'limit' most usageCount blog tags.
         """
-        return cls.objects.order_by('-view')[:limit]
+        return cls.objects.order_by('-usageCount')[:limit]
 
 class blogMeta(models.Model):
     blog = models.OneToOneField(blog, on_delete=models.CASCADE, related_name='blogMeta')
@@ -71,26 +72,26 @@ class blogMeta(models.Model):
     metaKeywords = models.CharField(max_length=255)
 
 
-def blogSlides_path(instance, fileName):
-    ext = os.path.splitext(fileName)[1].lower()
-    folderName = re.sub(r'[^\w]', '_', instance.blog.title)
-    unique_name = f'bsp_{folderName}_{uuid.uuid4().hex}{ext}'
-    return f'images/blogs/{folderName}/slides/{unique_name}'
+# def blogSlides_path(instance, fileName):
+#     ext = os.path.splitext(fileName)[1].lower()
+#     folderName = re.sub(r'[^\w]', '_', instance.blog.title)
+#     unique_name = f'bsp_{folderName}_{uuid.uuid4().hex}{ext}'
+#     return f'images/blogs/{folderName}/slides/{unique_name}'
 
-def blogSlidesWebp_path(instance, fileName):
-    ext = '.webp'
-    folderName = re.sub(r'[^\w]', '_', instance.blog.title)
-    unique_name = f'bspw_{folderName}_{uuid.uuid4().hex}{ext}'
-    return f'images/blogs/{folderName}/slides/{unique_name}'
+# def blogSlidesWebp_path(instance, fileName):
+#     ext = '.webp'
+#     folderName = re.sub(r'[^\w]', '_', instance.blog.title)
+#     unique_name = f'bspw_{folderName}_{uuid.uuid4().hex}{ext}'
+#     return f'images/blogs/{folderName}/slides/{unique_name}'
 
-class blogSlides(models.Model):
-    blog = models.ForeignKey(blog, on_delete = models.CASCADE, related_name = 'blogSlides')
-    image = models.ImageField(upload_to = blogSlides_path)
-    imageWebp = models.ImageField(upload_to = blogSlidesWebp_path)
+# class blogSlides(models.Model):
+#     blog = models.ForeignKey(blog, on_delete = models.CASCADE, related_name = 'blogSlides')
+#     image = models.ImageField(upload_to = blogSlides_path)
+#     imageWebp = models.ImageField(upload_to = blogSlidesWebp_path)
 
-class blogVideos(models.Model):
-    blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogVideos')
-    url = models.URLField(max_length=255)
+class blogVideo(models.Model):
+    blog = models.OneToOneField(blog, on_delete=models.CASCADE, related_name='blogVideo')
+    urlVideo = models.URLField(max_length=255)
 
 class blogViewTypesChoices(models.IntegerChoices):
     null = 0,

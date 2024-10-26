@@ -1,14 +1,13 @@
 from django import template
 
-from blog.models import blog, blogVideos
+from blog.models import blog, blogVideo
 
 register = template.Library()
 
 @register.filter
 def getVideoUrl(blogObject):
     
-    blogVideoObject = blogVideos.objects.filter(blog=blogObject).first()
-    
-    return blogVideoObject.url if blogVideoObject else None
+    blogVideoObject = blogVideo.objects.filter(blog=blogObject).first()
+    return blogVideoObject.urlVideo if blogVideoObject else None
 
 

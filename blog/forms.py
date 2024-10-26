@@ -40,26 +40,29 @@ class blogMeta_form(forms.ModelForm):
             
         }
 
-class blogSlides_form(forms.ModelForm):
-    class Meta:
-        model = blogSlides
-        fields = [
-            'image',
-        ]
-        widgets = {
-            'image': forms.FileInput(attrs={ 'class':'form-control dropify', 'placeholder': ' پوستر ', 'type':'file', 'data-default-file':'/statics/dashboard/assets/img/2849110.png', 'data-max-file-size':'2M'}),
-        }
+# class blogSlides_form(forms.ModelForm):
+#     class Meta:
+#         model = blogSlides
+#         fields = [
+#             'image',
+#         ]
+#         widgets = {
+#             'image': forms.FileInput(attrs={ 'class':'form-control dropify', 'placeholder': ' پوستر ', 'type':'file', 'data-default-file':'/statics/dashboard/assets/img/2849110.png', 'data-max-file-size':'2M'}),
+#         }
 
 
 
 class blogVideo_form(forms.ModelForm):
     class Meta:
-        model = blogVideos
+        model = blogVideo
         fields = [
-            'url',
+            'urlVideo',
 
         ]
         widgets = {
-            'url': forms.TextInput(attrs={ 'class':'form-control', 'placeholder': ' https://www.aparat.com/video/video/embed/videohash/wsjc298/vt/frame ', 'type':'text'  }),
+            'urlVideo': forms.TextInput(attrs={ 'class':'form-control', 'placeholder': ' https://www.aparat.com/video/video/embed/videohash/wsjc298/vt/frame ', 'type':'text'  }),
         }
+    def __init__(self, *args, **kwargs):
+        super(blogVideo_form, self).__init__(*args, **kwargs)
+        self.fields['urlVideo'].required = False
 

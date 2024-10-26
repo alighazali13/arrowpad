@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Prefetch
 import jdatetime, random
 
-from blog.models import blog
+from blog.models import blog, blogTags
 from .models import categories, categoryMeta
 from adminstrator.models import adminCodes
 
@@ -30,6 +30,64 @@ def paginate(objects, perPage, request):
             result = object_page.page(object_page.num_pages)
 
       return result
+
+def sendCode(phoneNumber, client):
+    if client == 'admin':
+      code = random.randint(10000,99999)
+      adminCodes.objects.create(
+      phoneNumber = phoneNumber,
+      code = code
+      )
+    return code
+
+def validation(inputCode, phoneNumber, reqType):
+    print(inputCode)
+    print(phoneNumber)
+    if reqType == 'admin':
+        if adminCodes.objects.filter(phoneNumber=phoneNumber, code=inputCode).exists():
+            status = True
+            adminCodes.objects.get(phoneNumber=phoneNumber, code=inputCode).delete()
+        else:
+            status = False
+    return status
+
+def reset_code_sent():
+    adminCodes.objects.all().delete()
+
+def isValueChanged(currentValue, newValue):
+    return currentValue != newValue
+    
+
+
+
+def insertTags(tags, tagType):
+    if tagType == 'blog':
+        for tag in tags:
+            blogTagObject, created = blogTags.objects.get_or_create(name=tag)
+            if not created:   
+                blogTagObject.usageCount += 1
+            elif created:
+                 blogTagObject.url = tag
+            
+            blogTagObject.save()
+      # if created equal False => this tag is new and created new tag objects :)
+
+def removeTags(tags, tagType):
+    if tagType == 'blog':
+        for tag in tags:
+            tagObjects = blogTags.objects.filter(name=tag).first()
+            if tagObjects:
+                if tagObjects.usageCount == 1:
+                    tagObjects.delete()
+                else:
+                    tagObjects.usageCount -= 1 
+                    tagObjects.save()
+
+def updateBlogTags(newTags, exsitingTags, tagType):
+    tagsToRemove = set(exsitingTags) - set(newTags)
+    tagToAdd = set(newTags) - set(exsitingTags)
+    removeTags(tagsToRemove, 'blog')
+    insertTags(tagToAdd, 'blog')
 
 def getActiveCategories():
      try:
@@ -64,26 +122,3 @@ def getCategoryMetaObject(categoryObject):
             return None
 
 
-
-def sendCode(phoneNumber, client):
-    if client == 'admin':
-      code = random.randint(10000,99999)
-      adminCodes.objects.create(
-      phoneNumber = phoneNumber,
-      code = code
-      )
-    return code
-
-def validation(inputCode, phoneNumber, reqType):
-    print(inputCode)
-    print(phoneNumber)
-    if reqType == 'admin':
-        if adminCodes.objects.filter(phoneNumber=phoneNumber, code=inputCode).exists():
-            status = True
-            adminCodes.objects.get(phoneNumber=phoneNumber, code=inputCode).delete()
-        else:
-            status = False
-    return status
-
-def reset_code_sent():
-    adminCodes.objects.all().delete()
