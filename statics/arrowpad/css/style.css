@@ -203,7 +203,7 @@ p:last-child {
   -webkit-transition: var(--transition);
   transition: var(--transition);
   display: inline-block;
-  background-color: var(--mainColor);
+  background-color: var(--blackColor);
   color: var(--whiteColor);
   position: relative;
   z-index: 1;
@@ -227,7 +227,7 @@ p:last-child {
 }
 
 .default-btn:hover {
-  color: var(--mainColor);
+  color: var(--blackColor);
 }
 
 .default-btn:hover::before {
