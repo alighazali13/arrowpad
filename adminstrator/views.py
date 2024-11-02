@@ -23,7 +23,7 @@ def logoutAdmin(request):
 def statistics(request):
     
     if 'admin_phoneNumber_s' not in request.session:
-        return redirect('loginAdmin')
+        return redirect('admin_login')
     else:
         adminLoginObject = adminLogin.objects.get(phoneNumber = request.session['admin_phoneNumber_s']) 
         ul_on = 'statistics'

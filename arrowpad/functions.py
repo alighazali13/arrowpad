@@ -3,7 +3,7 @@ from django.db.models import Prefetch
 import jdatetime, random
 
 from blog.models import blog, blogTags
-from .models import categories, categoryMeta
+from .models import categories, categoryMeta, banner
 from adminstrator.models import adminCodes
 
 
@@ -88,6 +88,9 @@ def updateBlogTags(newTags, exsitingTags, tagType):
     tagToAdd = set(newTags) - set(exsitingTags)
     removeTags(tagsToRemove, 'blog')
     insertTags(tagToAdd, 'blog')
+
+def getActiveBanners():
+     return banner.objects.filter(active=True).order_by('-position')
 
 def getActiveCategories():
      try:

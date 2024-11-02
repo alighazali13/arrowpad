@@ -35,3 +35,33 @@ class categoryMeta(models.Model):
     metaTags = models.CharField(max_length=255)
     metaDescription = models.TextField()
     metaKeywords = models.CharField(max_length=255)
+
+def bannerBackgroundImage_path(instance, fileName):
+    ext = '.webp'
+    folderName = re.sub(r'[^\w]', '_', instance.title)
+    unique_name = f'bbg_{folderName}_{uuid.uuid4().hex}{ext}'
+    return f'images/banner/{folderName}/{unique_name}'
+
+def bannerRightImage_path(instance, fileName):
+    ext = '.png'
+    folderName = re.sub(r'[^\w]', '_', instance.title)
+    unique_name = f'br_{folderName}_{uuid.uuid4().hex}{ext}'
+    return f'images/banner/{folderName}/{unique_name}'
+
+def bannerLeftImage_path(instance, fileName):
+    ext = '.png'
+    folderName = re.sub(r'[^\w]', '_', instance.title)
+    unique_name = f'br_{folderName}_{uuid.uuid4().hex}{ext}'
+    return f'images/banner/{folderName}/{unique_name}'
+
+class banner(models.Model):
+    slug = models.SlugField(default=uuid.uuid4)
+    title = models.CharField(max_length=255)
+    backgroundImage = models.ImageField(upload_to=bannerBackgroundImage_path)
+    rightImage = models.ImageField(upload_to=bannerRightImage_path, null=True, blank=True)
+    leftImage = models.ImageField(upload_to=bannerLeftImage_path)
+    btnText = models.CharField(max_length=20, null=True, blank=True)
+    btnUrl = models.URLField(max_length=1000, null=True, blank=True)
+    color = models.CharField(max_length=10, default='#000000')
+    position = models.IntegerField()
+    active = models.BooleanField(default=True)
