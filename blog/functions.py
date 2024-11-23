@@ -1,6 +1,6 @@
 from django.db.models import Prefetch
 
-from .models import blog, blogMeta,  blogView, blogVideo, blogViewTypesChoices, blogComment, blogReplies
+from .models import blog, blogMeta, blogVideo, blogViewTypesChoices, blogComment, blogReplies
 from arrowpad.models import categories
 
 

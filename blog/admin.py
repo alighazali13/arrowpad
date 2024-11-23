@@ -21,10 +21,6 @@ class blogVideo_admin(admin.ModelAdmin):
     list_display = ['id', 'blog']
 admin.site.register(blogVideo, blogVideo_admin)
 
-class blogView_admin(admin.ModelAdmin):
-    list_display = ['id', 'blog', 'date', 'view']
-admin.site.register(blogView, blogView_admin)
-
 class blogComment_admin(admin.ModelAdmin):
     list_display = ['id', 'blog', 'name', 'email', 'comment', 'active']
 admin.site.register(blogComment, blogComment_admin)

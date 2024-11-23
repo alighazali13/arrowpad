@@ -98,11 +98,6 @@ class blogViewTypesChoices(models.IntegerChoices):
     total = 1,
     today = 2
 
-class blogView(models.Model):
-    blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogView')
-    # types = models.IntegerField(default = blogViewTypesChoices.null, choices=blogViewTypesChoices.choices)
-    date = jmodels.jDateField(default=jdatetime.date.today)
-    view = models.IntegerField()
 
 class blogComment(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE, related_name='blogComment')

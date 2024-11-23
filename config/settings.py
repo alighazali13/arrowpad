@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'arrowpad.apps.ArrowpadConfig',
     'blog.apps.BlogConfig',
+    'analytics.apps.AnalyticsConfig',
     'adminstrator.apps.AdminstratorConfig',
 ]
 

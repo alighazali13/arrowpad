@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('arrowpad.urls')),
     path("blog/", include('blog.urls')),
+    path("analytics/", include('analytics.urls')),
     path("a/d/min/strator/", include('adminstrator.urls'))
 ]
 

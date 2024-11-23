@@ -64,10 +64,12 @@
                                         <td>
                                             <ul class="list-unstyled d-flex">
                                                 {% if blog.active %}
+                                                    <li><a href="{% url 'statisticsBlog' category.en_name blog.url %}" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="آمار"><i class="fa-solid fa-chart-pie"></i></a></li>   
                                                     <li><a href="{% url 'updateBlog' category.en_name blog.url %}" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="ویرایش"><i class="fa-solid fa-pencil fa-fw"></i></a></li>   
                                                     <li><a href="#" class="danger_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><i class="fa-solid fa-trash-can fa-fw"></i></a></li>   
                                                     <li><a href="#" class="danger_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="غیرفعال کردن"><i class="fa-solid fa-ban fa-fw"></i></a></li>   
                                                 {% else %}
+                                                    <li><a href="{% url 'statisticsBlog' category.en_name blog.url %}" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="آمار"><i class="fa-solid fa-chart-pie"></i></a></li>   
                                                     <li><a href="{% url 'updateBlog' category.en_name blog.url %}" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="ویرایش"><i class="fa-solid fa-pencil fa-fw"></i></a></li>   
                                                     <li><a href="#" class="danger_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="حذف"><i class="fa-solid fa-trash-can fa-fw"></i></a></li>   
                                                     <li><a href="#" class="primary_hover bs-tooltip" data-toggle="tooltip" data-placement="top" title="" data-original-title="فعال کردن"><i class="fa-solid fa-circle-check fa-fw"></i></a></li>   

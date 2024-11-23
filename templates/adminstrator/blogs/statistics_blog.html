@@ -1,0 +1,85 @@
+        {% extends 'adminstrator/masterpage.html' %}
+{% load static %}
+{% load mathfilters %}
+
+
+
+{% block content %}
+<div id="content" class="main-content">
+    <div class="layout-px-spacing">
+
+        <div class="row layout-top-spacing">
+            <div class="col-lg-12">
+                <div class="row" id="cancel-row">
+                    <div id="chartLine" class="col-xl-12 layout-top-spacing layout-spacing">
+                        <div class="statbox widget box box-shadow">
+                            <div class="widget-header">
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                        <h4>ساده</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-content widget-content-area">
+                                <input type="hidden" id="blog_url" value="{{blog.url}}">
+                                <div id="s-line" class=""></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block meta_title %}
+    امار | {{blog.title}}
+{% endblock meta_title %}
+
+{% block meta_tag %}
+
+{% endblock meta_tag %}
+
+{% block meta_description %}
+
+{% endblock meta_description %}
+
+{% block links %}
+<style>
+    .apexcharts-canvas {
+        margin: 0 auto;
+    }
+
+    .apexcharts-title-text {
+        fill: #e0e6ed;
+    }
+    .apexcharts-yaxis-label {
+        fill: #e0e6ed;
+    }
+    .apexcharts-xaxis-label {
+        fill: #e0e6ed;
+    }
+    .apexcharts-legend-text {
+        color: #e0e6ed!important;
+    }
+    .apexcharts-radialbar-track.apexcharts-track .apexcharts-radialbar-area {
+        stroke: #191e3a;
+    }
+    .apexcharts-pie-label, .apexcharts-datalabel, .apexcharts-datalabel-label, .apexcharts-datalabel-value {
+        fill: #bfc9d4;
+    }
+</style>
+    <link href="{% static 'dashboard/plugins/apex/apexcharts.css' %}" rel="stylesheet" type="text/css" />
+    
+{% endblock links %}
+
+{% block scripts %}
+
+    <script src="{% static 'dashboard/plugins/apex/apexcharts.min.js'%}"></script>
+    <script src="{% static 'dashboard/assets/js/ajax/apexCharts/blogApex.js'%}"></script>
+
+{% endblock scripts %}

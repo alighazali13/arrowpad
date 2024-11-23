@@ -19,7 +19,6 @@ def logoutAdmin(request):
         del request.session['admin_phoneNumber_s']
         return redirect('/')
 
-
 def statistics(request):
     
     if 'admin_phoneNumber_s' not in request.session:
@@ -44,7 +43,6 @@ def statistics(request):
         }
 
         return render(request, 'adminstrator/statistics.html', context)
-
 
 
 def blogManagement(request, en_name):
@@ -81,7 +79,7 @@ def addBlog(request, en_name):
     else:
         adminLoginObject = adminLogin.objects.get(phoneNumber = request.session['admin_phoneNumber_s']) 
         ul_on = 'blogs'
-        li_on = f'add_{en_name}'
+        li_on = f'{en_name}_managements'
         parent_page = 'اروپد/بلاگ ها'
         this_page = 'اضافه کردن کیوسک جدید'
         cetegoriesObject = getActiveCategories()
@@ -186,7 +184,7 @@ def updateBlog(request, en_name, url):
         blogVideoObject = blogObject.blogVideo
         
         ul_on = 'blogs'
-        li_on = f'update_{en_name}'
+        li_on = f'{en_name}_managements'
         parent_page = 'اروپد/بلاگ ها'
         this_page = f'بروزرسانی {en_name} به نام {blogObject.title} '
         cetegoriesObject = getActiveCategories()
@@ -292,7 +290,41 @@ def updateBlog(request, en_name, url):
 
 
         return render(request, 'adminstrator/blogs/update_blog.html', context)
+   
+def statisticsBlog(request, en_name, url):
+    if 'admin_phoneNumber_s' not in request.session:
+        return redirect('loginAdmin')
+    else:
+        adminLoginObject = adminLogin.objects.get(phoneNumber = request.session['admin_phoneNumber_s']) 
+        ul_on = 'blogs'
+        li_on = f'{en_name}_managements'
+        
+        cetegoriesObject = getActiveCategories()
+        thiscetegoryObject = getCategoryObjectWithEnName(en_name)
+        blogObject = getBlogObjectByUrl(url)
+        blogMetaObject = blogObject.blogMeta
+        parent_page = f" {thiscetegoryObject.title} / اروپد / بلاگ ها"
+        this_page = f" آمار / {blogObject.title} "
+       
 
+        
+                                    
+            
+        context = {
+            'ul_on' : ul_on,
+            'li_on' : li_on,
+            'this_page' : this_page,
+            'parent_page' : parent_page,
+            'categories' : cetegoriesObject,
+            'adminLogin' : adminLoginObject,
+            'category' : thiscetegoryObject,
+
+            'blog' : blogObject,
+            'blogMeta' : blogMetaObject,
+            }
+
+
+        return render(request, 'adminstrator/blogs/statistics_blog.html', context)
 
 
 

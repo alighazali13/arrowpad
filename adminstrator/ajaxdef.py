@@ -1,7 +1,9 @@
 import json, jdatetime
+from django.shortcuts import redirect
 from django.http import JsonResponse, HttpResponseRedirect
 from .models import adminLogin, adminInformation, adminCodes
 from arrowpad.functions import sendCode, validation
+
 
 def accountValidation(request):
     context = {}
