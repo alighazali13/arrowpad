@@ -138,35 +138,23 @@ function getShamsiMonthBefore(monthsToSubtract) {
 }
 
 
-// function attachClickEvents() {
-//     document.querySelectorAll("text.apexcharts-xaxis-label").forEach(item => {
-//       const firstChild = item.firstElementChild; // گرفتن اولین فرزند
-//       month = firstChild.textContent
-//       // firstChild.setAttribute('onclick', `monthredirect('${month}')`);
-//       firstChild.setAttribute('onclick', `alert('${month}')`);
-//       console.log(firstChild);
+// // function attachClickEvents() {
+// //     document.querySelectorAll("text.apexcharts-xaxis-label").forEach(item => {
+// //       const firstChild = item.firstElementChild; // گرفتن اولین فرزند
+// //       month = firstChild.textContent
+// //       // firstChild.setAttribute('onclick', `monthredirect('${month}')`);
+// //       firstChild.setAttribute('onclick', `alert('${month}')`);
+// //       console.log(firstChild);
       
-//   });
-// }
+// //   });
+// // }
 
-// function monthredirect(month) {
-//   alert(month)
-// }
+// // function monthredirect(month) {
+// //   alert(month)
+// // }
 
-function attachClickEvents() {
-  document.querySelectorAll("text.apexcharts-xaxis-label").forEach(item => {
-      const firstChild = item.firstElementChild; // گرفتن اولین فرزند
-      console.log(firstChild)
-      const month = firstChild.textContent;
-      
-      // به جای setAttribute از addEventListener استفاده کنید
-      firstChild.addEventListener('click', function() {
-          alert(month); // نمایش alert با متن ماه
-      });
-  });
-}
 
-// document.addEventListener("DOMContentLoaded", function() {
-//   attachClickEvents();
-// });
+// // document.addEventListener("DOMContentLoaded", function() {
+// //   attachClickEvents();
+// // });
 
