@@ -19,6 +19,8 @@ def get_blog_view(request):
         print(data['blogUrl'])
         blog_obj = fetch_object_with_monthly_analytics_by_url(data['blogUrl'], 'blog', 12)
         latest_analytics = blog_obj.latest_analytics
+        print('latest_analytics')
+        print(latest_analytics)
         analytics_res =view_fixer(latest_analytics, 12)
         print(analytics_res)
 

@@ -31,10 +31,7 @@ window.addEventListener("load", (event) => {
         } ,
         dataType : 'json' ,
         success : function (res , status) {
-            console.log('res');
-            console.log(getShamsiMonthBefore(12));
             views = res.views
-            console.log(views)
             
             var sline = {
                 chart: {
@@ -131,7 +128,7 @@ function getShamsiMonthBefore(monthsToSubtract) {
       }
 
       // به جای استفاده از newMonth، از newMonth - 1 استفاده می‌کنیم تا به درستی به ماه‌های گذشته دسترسی پیدا کنیم
-      monthsBefore.push(monthsInPersian[(newMonth) % 12]);
+      monthsBefore.push(monthsInPersian[(newMonth + 1) % 12]);
   }
 
   return monthsBefore;
@@ -149,10 +146,22 @@ function getShamsiMonthBefore(monthsToSubtract) {
 // //   });
 // // }
 
-// // function monthredirect(month) {
-// //   alert(month)
-// // }
+function monthredirect(month) {
+  alert(month)
+}
 
+function attachClickEvents() {
+  document.querySelectorAll("text.apexcharts-xaxis-label").forEach(item => {
+      const firstChild = item.firstElementChild; // گرفتن اولین فرزند
+      console.log(firstChild)
+      const month = firstChild.textContent;
+      
+      // به جای setAttribute از addEventListener استفاده کنید
+      firstChild.addEventListener('click', function() {
+          alert(month); // نمایش alert با متن ماه
+      });
+  });
+}
 
 // // document.addEventListener("DOMContentLoaded", function() {
 // //   attachClickEvents();
