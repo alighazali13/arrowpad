@@ -32,5 +32,3 @@ class adminCodes(models.Model):
     phoneNumber = models.CharField(max_length=12, unique=True)
     code = models.CharField(max_length=5)
 
-    def __str__(self) -> str:
-        return self.adminLogin.adminInformation.firstName + self.adminLogin.adminInformation.lastName
