@@ -19,12 +19,26 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from django.contrib.sitemaps.views import sitemap
+
+from blog.sitemap import BlogSitemap
+from arrowpad.sitemap import LandingPageSitemap
+
+sitemaps = {
+    'blog': BlogSitemap,
+    'landing_page':LandingPageSitemap,
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('arrowpad.urls')),
     path("blog/", include('blog.urls')),
     path("analytics/", include('analytics.urls')),
-    path("a/d/min/strator/", include('adminstrator.urls'))
+    path("a/d/min/strator/", include('adminstrator.urls')),
+
+    path(
+        'sitemap.xml',sitemap, {'sitemaps':sitemaps}, name='django.contrib.sitemaps.views.sitemap'
+    )
 ]
 
 
