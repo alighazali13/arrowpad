@@ -139,10 +139,10 @@ def addBlog(request, en_name):
                         metaDescription=metaDescription,
                         metaKeywords=metaKeywords
                     )
-                    blogView.objects.create(
-                        blog=blogObject,
-                        view=0
-                    )
+                    # blogView.objects.create(
+                    #     blog=blogObject,
+                    #     view=0
+                    # )
                     if hasVideo:
                         blogVideo.objects.create(
                             blog=blogObject,
@@ -289,8 +289,19 @@ def updateBlog(request, en_name, url):
                 }
 
 
-        return render(request, 'adminstrator/blogs/update_blog.html', context)
-   
+        return render(request, 'adminstrator/blogs/update_blog.html', context)   
+
+def removeBlog(request, blog_type, url):
+    if 'admin_phoneNumber_s' not in request.session:
+        return redirect('loginAdmin')
+    else:
+        adminLoginObject = adminLogin.objects.get(phoneNumber = request.session['admin_phoneNumber_s']) 
+        
+        blogObject = getBlogObjectByUrl(url)
+        blogObject.delete()
+        
+        return redirect('blog_details', blog_type)
+
 def statisticsBlog(request, en_name, url):
     if 'admin_phoneNumber_s' not in request.session:
         return redirect('loginAdmin')
